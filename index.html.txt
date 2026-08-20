@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MedEcosystem</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body { font-family: sans-serif; background: #121212; color: white; padding: 15px; margin: 0; }
+        .card { background: #1e1e1e; padding: 15px; border-radius: 12px; margin-bottom: 12px; border: 1px solid #333; }
+        .tag { background: #0088cc; color: white; padding: 3px 8px; border-radius: 5px; font-size: 12px; }
+        h3 { margin: 8px 0 5px 0; font-size: 16px; color: #40a9ff; }
+        p { font-size: 14px; margin: 5px 0; color: #ccc; }
+    </style>
+</head>
+<body>
+    <h2 style="text-align: center;">MedEcosystem</h2>
+    
+    <div class="card">
+        <span class="tag">1-KURS</span> <span class="tag">Anatomiya</span>
+        <h3>Yurakning o'tkazuvchi tizimi</h3>
+        <p><b>Konspekt:</b> Sinus-atrial tugun, atrioventrikulyar tugun va His tutamlaridan iborat.</p>
+        <p><b>Klinik ahamiyati:</b> Aritmiya va blokadalarni tushunishda asosiy manba.</p>
+    </div>
+
+    <script>
+        window.Telegram.WebApp.ready();
+    </script>
+</body>
+</html>
