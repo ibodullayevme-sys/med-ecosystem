@@ -2,62 +2,126 @@
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
-    <title>MedEcosystem</title>
+    <title>MedEcosystem - To'liq Tibbiyot Bazasi</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         body { font-family: sans-serif; background: #121212; color: white; padding: 15px; margin: 0; }
         .card { background: #1e1e1e; padding: 15px; border-radius: 12px; margin-bottom: 12px; border: 1px solid #333; }
-        .clickable { cursor: pointer; }
+        .clickable { cursor: pointer; transition: 0.2s; }
         .clickable:hover { border-color: #40a9ff; background: #252525; }
         h2 { text-align: center; color: #40a9ff; }
         .hidden { display: none; }
-        .back-btn { color: #40a9ff; margin-bottom: 15px; cursor: pointer; font-weight: bold; }
+        .back-btn { color: #40a9ff; margin-bottom: 15px; cursor: pointer; font-weight: bold; display: inline-block; }
+        p { color: #aaa; font-size: 14px; line-height: 1.4; }
     </style>
 </head>
 <body>
     <!-- 1. Kurslar -->
     <div id="view-courses">
-        <h2>Kurslar</h2>
-        <div class="card clickable" onclick="showSubjects('1-kurs')"><h3>1-Kurs</h3></div>
-        <div class="card clickable" onclick="showSubjects('2-kurs')"><h3>2-Kurs</h3></div>
+        <h2>MedEcosystem</h2>
+        <div class="card clickable" onclick="showSubjects('1-kurs')">
+            <h3>1-Kurs</h3>
+            <p>Anatomiya, Histologiya, Tibbiy kimyo, Fiziologiya, Lotin tili</p>
+        </div>
+        <div class="card clickable" onclick="showSubjects('2-kurs')">
+            <h3>2-Kurs</h3>
+            <p>Biokimyo, Normal fiziologiya, Mikrobiologiya, Farmakologiya</p>
+        </div>
+        <div class="card clickable" onclick="showSubjects('3-kurs')">
+            <h3>3-Kurs</h3>
+            <p>Patologik anatomiya, Patofiziologiya, Farmakologiya, Tibbiy psixologiya</p>
+        </div>
     </div>
 
     <!-- 2. Fanlar -->
     <div id="view-subjects" class="hidden">
-        <div class="back-btn" onclick="goBack('view-courses')">← Kurslarga</div>
+        <div class="back-btn" onclick="goBack('view-courses')">← Kurslarga qaytish</div>
         <h2 id="title-subjects"></h2>
         <div id="list-subjects"></div>
     </div>
 
-    <!-- 3. Mavzular -->
+    <!-- 3. Mavzular va Konspektlar -->
     <div id="view-topics" class="hidden">
-        <div class="back-btn" onclick="goBack('view-subjects')">← Fanlarga</div>
+        <div class="back-btn" onclick="goBack('view-subjects')">← Fanlarga qaytish</div>
         <h2 id="title-topics"></h2>
         <div id="list-topics"></div>
     </div>
 
     <script>
-        // MAVZULAR BAZASI
         const data = {
             '1-kurs': {
-                'Anatomiya': ['Suyaklar tizimi', 'Muskullar tizimi', 'Yurak anatomiyasi'],
-                'Tibbiy kimyo': ['Eritmalar', 'pH muhit', 'Termodinamika']
+                'Anatomiya': [
+                    { title: '1. Anatomiya fani, uning vazifalari va tarixi', text: 'Anatomiyaning asosiy tushunchalari, anatomik terminologiya va o\'qish usullari.' },
+                    { title: '2. Osteologiya: Suyaklarning umumiy tuzilishi', text: 'Suyaklarning tasnifi, kimyoviy tarkibi, o\'sishi va skelet bo\'limlari.' },
+                    { title: '3. Miologiya: Muskullar tizimi va funksiyasi', text: 'Skelet mushaklarining tuzilishi, yordamchi apparatlari va asosiy guruhlari.' },
+                    { title: '4. Yurak-qon tomir tizimi anatomiyasi', text: 'Yurakning topografiyasi, kameralari, qopqoqlari hamda katta va kichik qon aylanish doiralari.' },
+                    { title: '5. Nafas olish tizimi anatomiyasi', text: 'Yuqori va quyi nafas yo\'llari, o\'pka tuzilishi va plevra bo\'shlig\'i.' },
+                    { title: '6. Ovqat hazm qilish tizimi', text: 'Og\'iz bo\'shlig\'i, qizilo\'ngach, oshqozon, ichaklar, jigar va osti bezi anatomiyasi.' },
+                    { title: '7. Siydik ajratish tizimi', text: 'Buyraklar tuzilishi, nefron, siydik naylari, qovuq va siydik chiqarish kanali.' },
+                    { title: '8. Markaziy nerv sistemasi (Bosh va orqa miya)', text: 'Bosh miya bo\'limlari, yarimsharlar, miyacha, o\'zak qismlari va orqa miya tuzilishi.' }
+                ],
+                'Histologiya': [
+                    { title: '1. Histologiya faniga kirish va mikroskopiya', text: 'Hujayra nazorati, sitologiya va gistologik tekshiruv usullari.' },
+                    { title: '2. Epiteliy to\'qimalari', text: 'Bir qavatli va ko\'p qavatli epiteliy, bez epiteliyi va ularning vazifalari.' },
+                    { title: '3. Qon va limfa to\'qimasi (Gematopoes)', text: 'Eritrotsitlar, leykositlar, trombotsitlar va qon hosil bo\'lish jarayoni.' },
+                    { title: '4. Biriktiruvchi to\'qimalar', text: 'Birlamchi va maxsus xossali biriktiruvchi to\'qimalar, tog\'ay va suyak to\'qimasi.' },
+                    { title: '5. Asab to\'qimasi va nerv oxirlari', text: 'Neyronlar turlari, neyrogliya, sinapslar va retseptorlar.' }
+                ],
+                'Tibbiy kimyo': [
+                    { title: '1. Dispers sistemalar va eritmalar', text: 'Eritmalarning konsentratsiyasini ifodalash usullari, kolligativ xossalari.' },
+                    { title: '2. Kislota-asos muvozanati va pH', text: 'pH ko\'rsatkichi, kuchli va kuchsiz kislotalar, bufer sistemalar.' },
+                    { title: '3. Biologik termodinamika asoslari', text: 'Entalpiya, entropiya, Gibbs energiyasi va metabolik jarayonlardagi o\'rni.' }
+                ],
+                'Lotin tili': [
+                    { title: '1. Lotin tilining tibbiyotdagi o\'rni', text: 'Alphabet, unlilar va undoshlarning talaffuzi qoidalari.' },
+                    { title: '2. Anatomiya terminologiyasi asoslari', text: 'Ot va sifatlarning kelishiklari, bosh kelishik va qaratqich kelishik.' }
+                ]
             },
             '2-kurs': {
-                'Biokimyo': ['Oqsillar almashinuvi', 'Uglevodlar almashinuvi'],
-                'Normal fiziologiya': ['Qon fiziologiyasi', 'Nerv tizimi']
+                'Biokimyo': [
+                    { title: '1. Oqsillar va aminokislotalar almashinuvi', text: 'Aminokislotalarning parchalanish yo\'llari, transaminlanish va dezaminlanish, mochevina sintezi.' },
+                    { title: '2. Uglevodlar almashinuvi va glikoliz', text: 'Glyukoza parchalanishi, glikoliz, glyukoneogenez va glikogenoliz jarayonlari.' },
+                    { title: '3. Lipidlar almashinuvi va beta-oksidlanish', text: 'Yog\' kislotalarining parchalanishi, keton tanachalari va xolesterin almashinuvi.' },
+                    { title: '4. Fermentlar va ularning xossalari', text: 'Fermentlarning kinetikasi, kofermentlar va fermentativ faollik regulyatsiyasi.' }
+                ],
+                'Normal fiziologiya': [
+                    { title: '1. Fiziologiyaga kirish va gomeostaz', text: 'Biologik sistemalarda gomeostazni saqlash mexanizmlari va regulyatsiya turlari.' },
+                    { title: '2. Qon fiziologiyasi va gemostaz', text: 'Qonning bufer sistemalari, osmotik bosim va gemostaz (qon ivish mexanizmi).' },
+                    { title: '3. Yurak-qon tomir tizimi fiziologiyasi', text: 'Yurak avtomatizmi, qo\'zg\'aluvchanligi, EKG asoslari va qon bosimi regulyatsiyasi.' },
+                    { title: '4. Nafas olish fiziologiyasi', text: 'O\'pka ventilyatsiyasi, gazlar almashinuvi va nafas olish markazi.' }
+                ],
+                'Mikrobiologiya': [
+                    { title: '1. Bakteriyalar morfologiyasi va tuzilishi', text: 'Bakterial hujayra tuzilishi, kapsula, spora, xromosoma va bo\'yalish usullari.' },
+                    { title: '2. Viruslar va ularning tuzilishi', text: 'DНК va RНК saqlovchi viruslar, virion tuzilishi va infeksion sikl.' },
+                    { title: '3. Imunitet va infeksiya asoslari', text: 'Nospetsifik va spetsifik immunitet, antitelolar va fagotsitoz.' }
+                ]
+            },
+            '3-kurs': {
+                'Patologik anatomiya': [
+                    { title: '1. Patologik anatomiyaga kirish', text: 'Hujayra shikastlanishi, nekroz, apoptoz va uning turlari.' },
+                    { title: '2. Qon aylanishining buzilishlari', text: 'Giperemiya, ishemiya, tromboz, emboliya va infarkt.' },
+                    { title: '3. Yallig\'lanish jarayonlari', text: 'O\'tkir va surunkali yallig\'lanish, eksudatsiya va proliferatsiya.' }
+                ],
+                'Patofiziologiya': [
+                    { title: '1. Patofiziologiya predmeti va vazifalari', text: 'Nosologiya, kasallik bosqichlari, etiologiya va patogenez.' },
+                    { title: '2. Tipik patologik jarayonlar', text: 'Isitma, gipoksiya, shok va koma holatlarining mexanizmlari.' }
+                ],
+                'Farmakologiya': [
+                    { title: '1. Umumiy farmakologiya', text: 'Dori vositalarining farmakokinetikasi va farmakodinamikasi.' },
+                    { title: '2. Periferik nerv tizimiga ta\'sir etuvchi dorilar', text: 'Xolinergik va adrenergik vositalar.' }
+                ]
             }
         };
 
         function showSubjects(course) {
             document.getElementById('view-courses').classList.add('hidden');
             document.getElementById('view-subjects').classList.remove('hidden');
-            document.getElementById('title-subjects').innerText = course;
+            document.getElementById('title-subjects').innerText = course.toUpperCase();
             
             let list = document.getElementById('list-subjects');
             list.innerHTML = '';
             for (let sub in data[course]) {
-                list.innerHTML += `<div class="card clickable" onclick="showTopics('${course}', '${sub}')"><h3>${sub}</h3></div>`;
+                list.innerHTML += `<div class="card clickable" onclick="showTopics('${course}', '${sub}')"><h3>${sub}</h3><p>Mavzularni ko'rish →</p></div>`;
             }
         }
 
@@ -69,7 +133,11 @@
             let list = document.getElementById('list-topics');
             list.innerHTML = '';
             data[course][subject].forEach(topic => {
-                list.innerHTML += `<div class="card"><h3>${topic}</h3><p style="color:#aaa">Bu yerda konspekt bo'ladi...</p></div>`;
+                list.innerHTML += `
+                    <div class="card">
+                        <h3 style="color:#40a9ff">${topic.title}</h3>
+                        <p>${topic.text}</p>
+                    </div>`;
             });
         }
 
