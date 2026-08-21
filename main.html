@@ -1,1 +1,251 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>MedEcosystem - Anatomik Konspektlar</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body { font-family: sans-serif; background: #121212; color: white; padding: 15px; margin: 0; }
+        .card { background: #1e1e1e; padding: 15px; border-radius: 12px; margin-bottom: 12px; border: 1px solid #333; }
+        .clickable { cursor: pointer; transition: 0.2s; }
+        .clickable:hover { border-color: #40a9ff; background: #252525; }
+        h2, h3 { text-align: center; color: #40a9ff; }
+        .hidden { display: none; }
+        .back-btn { color: #40a9ff; margin-bottom: 15px; cursor: pointer; font-weight: bold; display: inline-block; }
+        p { color: #aaa; font-size: 14px; line-height: 1.4; margin: 6px 0; }
+        .section-title { color: #ffab00; margin-top: 20px; font-size: 17px; border-bottom: 1px solid #444; padding-bottom: 5px; font-weight: bold; }
+        
+        /* Modal oyna dizayni */
+        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: flex; justify-content: center; align-items: center; z-index: 1000; padding: 20px; box-sizing: border-box; }
+        .modal-content { background: #1e1e1e; width: 100%; max-width: 600px; max-height: 90vh; overflow-y: auto; padding: 20px; border-radius: 14px; border: 1px solid #40a9ff; position: relative; }
+        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 24px; color: #ff4d4f; cursor: pointer; font-weight: bold; }
+        
+        .conspect-box { background: #252525; padding: 12px; border-radius: 8px; margin-top: 10px; border-left: 3px solid #ffab00; }
+        .conspect-box ul { margin: 8px 0; padding-left: 20px; color: #ddd; font-size: 14px; }
+        .conspect-box li { margin-bottom: 6px; line-height: 1.4; }
+        .clinic { color: #ff4d4f; font-size: 13px; margin-top: 10px; border-left: 2px solid #ff4d4f; padding-left: 8px; }
+        .usmle { color: #52c41a; font-size: 13px; margin-top: 8px; border-left: 2px solid #52c41a; padding-left: 8px; }
+    </style>
+</head>
+<body>
+    <!-- 1. Kurslar -->
+    <div id="view-courses">
+        <h2>MedEcosystem</h2>
+        <div class="card clickable" onclick="showSubjects('1-kurs')">
+            <h3>1-Kurs</h3>
+            <p>Anatomiya, Histologiya, Tibbiy kimyo, Lotin tili</p>
+        </div>
+        <div class="card clickable" onclick="showSubjects('2-kurs')">
+            <h3>2-Kurs</h3>
+            <p>Biokimyo, Normal fiziologiya, Mikrobiologiya</p>
+        </div>
+        <div class="card clickable" onclick="showSubjects('3-kurs')">
+            <h3>3-Kurs</h3>
+            <p>Pat. anatomiya, Patofiziologiya, Farmakologiya</p>
+        </div>
+    </div>
 
+    <!-- 2. Fanlar -->
+    <div id="view-subjects" class="hidden">
+        <div class="back-btn" onclick="goBack('view-courses')">← Kurslarga qaytish</div>
+        <h2 id="title-subjects"></h2>
+        <div id="list-subjects"></div>
+    </div>
+
+    <!-- 3. Mavzular ro'yxati -->
+    <div id="view-topics" class="hidden">
+        <div class="back-btn" onclick="goBack('view-subjects')">← Fanlarga qaytish</div>
+        <h2 id="title-topics"></h2>
+        <div id="list-topics"></div>
+    </div>
+
+    <!-- Modal Konspekt Oynasi -->
+    <div id="modal-conspect" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title" style="color: #ffab00; text-align: left; font-size: 18px; border-bottom: 1px solid #444; padding-bottom: 8px;"></h2>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script>
+        const data = {
+            '1-kurs': {
+                'Anatomiya': [
+                    { type: 'header', title: 'I BOʻLIM. OSTEOLOGIA (Suyaklar tizimi)' },
+                    { 
+                        title: '1. Vertebra Sacralis (Dumgʻaza umurtqalari - S1-S5)', 
+                        summary: 'Dumgʻaza umurtqalari haqida toʻqima, qismlar va tuzilish konspekti.',
+                        details: [
+                            '<b>Umumiy tavsif:</b> Oʻsmirlikda oʻzaro birikib, <i>os sacrum</i> (dumgʻaza suyagi) hosil qiladi.',
+                            '<b>Qismlari:</b>',
+                            '• <i>Basis ossis sacri</i> (dumgʻaza asosi)',
+                            '• <i>Apex ossis sacri</i> (dumgʻaza uchi)',
+                            '• <i>Facies anterior / pelvina</i> (old/chanoq yuzasi)',
+                            '• <i>Facies posterior / dorsalis</i> (orqa yuzasi)'
+                        ],
+                        clinic: 'Dumgʻaza suyagi sinishlari nervlarga taʼsir qilishi mumkin.',
+                        usmle: 'USMLE: Kauda ekvina sindromi dumgʻaza kanali sohasidagi siqilishlarda kuzatiladi.'
+                    }
+                ],
+                'Histologiya': [
+                    { 
+                        title: '1. Epiteliy va qon toʻqimasi', 
+                        summary: 'Epiteliy toʻqimalari va qon hujayralarining gistologik tuzilishi.',
+                        details: ['<b>Epiteliy turlari:</b> Bir qavatli, koʻp qavatli va oʻtuvchi epiteliy.'],
+                        clinic: 'Anemiya va leykemiyada qon hujayralari sonining oʻzgarishi.',
+                        usmle: 'USMLE: Eritrotsitlar biconcave shaklga ega.' 
+                    }
+                ],
+                'Tibbiy kimyo': [
+                    { 
+                        title: '1. Eritmalar va bufer sistemalar', 
+                        summary: 'Qonning bufer sistemalari va kislota-asos muvozanati.',
+                        details: ['<b>Bufer sistemalar:</b> Bikarbonat, fosfat, oqsil va gemoglobin buferlari.'],
+                        clinic: 'Metabolik asidoz va alkaloz holatlari.',
+                        usmle: 'USMLE: Anion gap metabolik asidoz sabablarini aniqlashda qoʻllaniladi.' 
+                    }
+                ],
+                'Lotin tili': [
+                    { 
+                        title: '1. Anatomik terminologiya va retseptura', 
+                        summary: 'Lotin tilining grammatik asoslari va retsept yozish qoidalari.',
+                        details: ['<b>Nomina anatomica:</b> Otlarning egalik va qaratqich kelishiklari.'],
+                        clinic: 'Tibbiy retseptura xatolarining oldini olish.',
+                        usmle: 'USMLE: Xalqaro anatomik va farmatsevtik atamalar.' 
+                    }
+                ]
+            },
+            '2-kurs': {
+                'Biokimyo': [
+                    { 
+                        title: '1. Glikoliz va Krebs sikli', 
+                        summary: 'Energiya almashinuvining asosiy bosqichlari.', 
+                        details: [
+                            'Glikoliz jarayoni sitoplazmada ketadi.', 
+                            'Krebs sikli mitoxondriya matritsasida sodir boʻladi.'
+                        ], 
+                        clinic: 'Gipoksiya holatida anaerob glikoliz kuchayadi.', 
+                        usmle: 'USMLE: Krebs siklining asosiy regulyatori - izotsitratdegidrogenaza.' 
+                    }
+                ],
+                'Normal fiziologiya': [
+                    { 
+                        title: '1. Qon ivish sistemasi (Hemostaz)', 
+                        summary: 'Gemostaz mexanizmlari va ivish omillari.', 
+                        details: [
+                            'Vaskulyar-trombotsitar gemostaz.', 
+                            'Koagulyatsion gemostaz kaskadi.'
+                        ], 
+                        clinic: 'Gemofiliya kasalligida qon ivish vaqti choʻziladi.', 
+                        usmle: 'USMLE: VIII omil yetishmovchiligi Gemofiliya A ni keltirib chiqaradi.' 
+                    }
+                ],
+                'Mikrobiologiya': [
+                    { 
+                        title: '1. Bakteriyalar morfologiyasi', 
+                        summary: 'Kokklar, batsillalar va ularning boʻyalishi.', 
+                        details: [
+                            'Gram-musbat va Gram-manfiy bakteriyalar farqi.', 
+                            'Mikroskopiya usullari.'
+                        ], 
+                        clinic: 'Antibiotiklarga chidamlilik (rezistentlik).', 
+                        usmle: 'USMLE: Gram-musbat bakteriyalar qalin peptidoglycan qatlamiga ega.' 
+                    }
+                ]
+            },
+            '3-kurs': {
+                'Patologik anatomiya': [
+                    { 
+                        title: '1. Hujayra shikastlanishi va nekroz', 
+                        summary: 'Morfologik oʻzgarishlar va oʻlim turlari.', 
+                        details: ['Koagulyatsion va kolleksion nekroz.', 'Apoptoz jarayoni.'], 
+                        clinic: 'Miokard infarkti va toʻqima nekrozi.', 
+                        usmle: 'USMLE: Ishemiya natijasida yuzaga keladigan yurak infarkti koagulyatsion nekrozga misol boʻladi.' 
+                    }
+                ],
+                'Patofiziologiya': [
+                    { 
+                        title: '1. Tipik patologik jarayonlar (Shok)', 
+                        summary: 'Shok turlari va patogenezi.', 
+                        details: ['Kardiogen, hipovolemik va anafilaktik shok.', 'Qon bosimining keskin tushishi.'], 
+                        clinic: 'Shok holatida poliorganning yetishmovchiligi.', 
+                        usmle: 'USMLE: Septik shokda endotoksinlar vazodilatatsiyaga olib keladi.' 
+                    }
+                ],
+                'Farmakologiya': [
+                    { 
+                        title: '1. Umumiy farmakokinetika', 
+                        summary: 'Dorilarning soʻrilishi, taqsimlanishi va chiqarilishi.', 
+                        details: ['Biodavomiylik tushunchasi.', 'Jigar metabolizmi (P450 tizimi).'], 
+                        clinic: 'Dori vositalarining nojoʻya taʼsirlari.', 
+                        usmle: 'USMLE: Sitoxrom P450 fermentlarining induktorlari va ingibitorlari oʻzaro taʼsiri.' 
+                    }
+                ]
+            }
+        };
+
+        function showSubjects(course) {
+            document.getElementById('view-courses').classList.add('hidden');
+            document.getElementById('view-subjects').classList.remove('hidden');
+            document.getElementById('title-subjects').innerText = course.toUpperCase();
+            
+            let list = document.getElementById('list-subjects');
+            list.innerHTML = '';
+            for (let sub in data[course]) {
+                list.innerHTML += `<div class="card clickable" onclick="showTopics('${course}', '${sub}')"><h3>${sub}</h3><p>Kitob konspektlarini ko'rish →</p></div>`;
+            }
+        }
+
+        function showTopics(course, subject) {
+            document.getElementById('view-subjects').classList.add('hidden');
+            document.getElementById('view-topics').classList.remove('hidden');
+            document.getElementById('title-topics').innerText = subject;
+            
+            let list = document.getElementById('list-topics');
+            list.innerHTML = '';
+            data[course][subject].forEach(topic => {
+                if(topic.type === 'header') {
+                    list.innerHTML += `<div class="section-title">${topic.title}</div>`;
+                } else {
+                    list.innerHTML += `
+                        <div class="card clickable" onclick='openModal(${JSON.stringify(topic)})'>
+                            <h3 style="color:#40a9ff; text-align: left; font-size: 16px; margin: 0 0 6px 0;">${topic.title}</h3>
+                            <p>${topic.summary}</p>
+                            <span style="color: #ffab00; font-size: 12px; font-weight: bold;">To'liq konspektni o'qish uchun bosing →</span>
+                        </div>`;
+                }
+            });
+        }
+
+        function openModal(topic) {
+            document.getElementById('modal-title').innerText = topic.title;
+            let detailsHtml = '';
+            if(topic.details) {
+                detailsHtml += '<div class="conspect-box"><b>Konspekt:</b><ul>';
+                topic.details.forEach(item => {
+                    detailsHtml += `<li>${item}</li>`;
+                });
+                detailsHtml += '</ul></div>';
+            }
+            detailsHtml += `<div class="clinic"><b>Klinik jihati:</b> ${topic.clinic}</div>`;
+            detailsHtml += `<div class="usmle"><b>${topic.usmle}</b></div>`;
+            
+            document.getElementById('modal-body').innerHTML = detailsHtml;
+            document.getElementById('modal-conspect').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('modal-conspect').classList.add('hidden');
+        }
+
+        function goBack(id) {
+            document.querySelectorAll('body > div').forEach(div => div.classList.add('hidden'));
+            document.getElementById(id).classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
