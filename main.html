@@ -24,34 +24,31 @@
 </head>
 <body>
 
+    <!-- Kurslar sahifasi -->
     <div id="view-courses">
         <h2>MedEcosystem</h2>
-        <div class="card" onclick="showSubjects('1')">
+        <div class="card" onclick="openCourse('1-Kurs', ['Anatomiya', 'Histologiya', 'Tibbiy kimyo', 'Lotin tili'])">
             <h3>1-Kurs</h3>
             <p>Anatomiya, Histologiya, Tibbiy kimyo, Lotin tili</p>
         </div>
-        <div class="card" onclick="showSubjects('2')">
+        <div class="card" onclick="openCourse('2-Kurs', ['Biokimyo', 'Normal fiziologiya', 'Mikrobiologiya'])">
             <h3>2-Kurs</h3>
             <p>Biokimyo, Normal fiziologiya, Mikrobiologiya</p>
         </div>
-        <div class="card" onclick="showSubjects('3')">
+        <div class="card" onclick="openCourse('3-Kurs', ['Patologik anatomiya', 'Patofiziologiya', 'Farmakologiya'])">
             <h3>3-Kurs</h3>
             <p>Pat. anatomiya, Patofiziologiya, Farmakologiya</p>
         </div>
     </div>
 
+    <!-- Fanlar sahifasi -->
     <div id="view-subjects" class="hidden">
         <div class="back-btn" onclick="goBack('view-courses')">← Kurslarga qaytish</div>
         <h2 id="title-subjects"></h2>
         <div id="list-subjects"></div>
     </div>
 
-    <div id="view-topics" class="hidden">
-        <div class="back-btn" onclick="goBack('view-subjects')">← Fanlarga qaytish</div>
-        <h2 id="title-topics"></h2>
-        <div id="list-topics"></div>
-    </div>
-
+    <!-- Modal Oyna -->
     <div id="modal-conspect" class="modal hidden">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -61,89 +58,38 @@
     </div>
 
     <script>
-        const subjectsData = {
-            '1': ['Anatomiya', 'Histologiya', 'Tibbiy kimyo', 'Lotin tili'],
-            '2': ['Biokimyo', 'Normal fiziologiya', 'Mikrobiologiya'],
-            '3': ['Patologik anatomiya', 'Patofiziologiya', 'Farmakologiya']
-        };
-
-        const topicsData = {
-            'Biokimyo': {
-                title: '1. Glikoliz va Krebs sikli',
-                summary: 'Energiya almashinuvining asosiy bosqichlari.',
-                details: '• Glikoliz jarayoni sitoplazmada ketadi.<br>• Krebs sikli mitoxondriya matritsasida sodir boʻladi.',
-                clinic: 'Gipoksiya holatida anaerob glikoliz keskin kuchayadi.',
-                usmle: 'USMLE: Krebs siklining asosiy regulyatori - izotsitratdegidrogenaza.'
-            },
-            'Normal fiziologiya': {
-                title: '1. Qon ivish sistemasi (Gemostaz)',
-                summary: 'Gemostaz mexanizmlari va ivish omillari.',
-                details: '• Vaskulyar-trombotsitar gemostaz.<br>• Koagulyatsion gemostaz kaskadi.',
-                clinic: 'Gemofiliya kasalligida qon ivish vaqti choʻziladi.',
-                usmle: 'USMLE: VIII omil yetishmovchiligi Gemofiliya A ni keltirib chiqaradi.'
-            },
-            'Mikrobiologiya': {
-                title: '1. Bakteriyalar morfologiyasi',
-                summary: 'Kokklar, batsillalar va ularning tuzilishi.',
-                details: '• Gram-musbat va Gram-manfiy bakteriyalar farqi.<br>• Mikroskopiya usullari.',
-                clinic: 'Antibiotiklarga chidamlilik (rezistentlik) muammosi.',
-                usmle: 'USMLE: Gram-musbat bakteriyalar qalin peptidoglikan qatlamiga ega.'
-            },
-            'Anatomiya': {
-                title: '1. Vertebra Sacralis',
-                summary: 'Dumgʻaza umurtqalari haqida konspekt.',
-                details: '• Oʻsmirlikda oʻzaro birikib, os sacrum hosil qiladi.',
-                clinic: 'Dumgʻaza suyagi sinishlari nervlarga taʼsir qilishi mumkin.',
-                usmle: 'USMLE: Kauda ekvina sindromi.'
-            }
-        };
-
-        function showSubjects(courseNum) {
+        function openCourse(courseName, subjects) {
             document.getElementById('view-courses').classList.add('hidden');
             document.getElementById('view-subjects').classList.remove('hidden');
-            document.getElementById('title-subjectsinnerText'] = courseNum + '-kurs fanlari';
+            document.getElementById('title-subjects').innerText = courseName;
             
             let list = document.getElementById('list-subjects');
             list.innerHTML = '';
             
-            let subs = subjectsData[courseNum] || [];
-            subs.forEach(sub => {
-                list.innerHTML += `<div class="card" onclick="showTopics('${sub}')"><h3>${sub}</h3><p>Konspektlarni ochish →</p></div>`;
+            subjects.forEach(sub => {
+                list.innerHTML += `
+                    <div class="card" onclick="openTopic('${sub}')">
+                        <h3>${sub}</h3>
+                        <p>Konspektni ochish →</p>
+                    </div>`;
             });
         }
 
-        function showTopics(subjectName) {
-            document.getElementById('view-subjects').classList.add('hidden');
-            document.getElementById('view-topics').classList.remove('hidden');
-            document.getElementById('title-topics').innerText = subjectName;
-            
-            let list = document.getElementById('list-topics');
-            list.innerHTML = '';
-            
-            let topic = topicsData[subjectName] || {
-                title: '1. Mavzu tayyorlanmoqda',
-                summary: 'Bu fan boʻlimi tez kunda qoʻshiladi.',
-                details: 'Tez kunda toʻliq konspektlar joylashtiriladi.',
-                clinic: 'Klinik maʼlumotlar qoʻshiladi.',
-                usmle: 'USMLE maʼlumotlari tayyorlanmoqda.'
+        function openTopic(subjectName) {
+            let topic = {
+                title: subjectName + ' boʻyicha konspekt',
+                summary: 'Asosiy tushunchalar va batafsil maʼlumotlar.',
+                details: '• Bu yerda ' + subjectName + ' fanining toʻliq konspekt matnlari joylashadi.<br>• Barcha asosiy mexanizmlar va taʼriflar kiritilgan.',
+                clinic: 'Klinik ahamiyati: Amaliyotda qoʻllaniladigan muhim belgilar.',
+                usmle: 'USMLE testlari uchun muhim eslatma.'
             };
 
-            list.innerHTML += `
-                <div class="card" onclick='openModal(${JSON.stringify(topic)})'>
-                    <h3 style="color:#40a9ff; text-align: left; font-size: 16px; margin: 0 0 6px 0;">${topic.title}</h3>
-                    <p>${topic.summary}</p>
-                    <span style="color: #ffab00; font-size: 12px; font-weight: bold;">To'liq konspektni o'qish →</span>
-                </div>`;
-        }
-
-        function openModal(topic) {
             document.getElementById('modal-title').innerText = topic.title;
-            let html = `
+            document.getElementById('modal-body').innerHTML = `
                 <div class="conspect-box"><b>Konspekt:</b><br>${topic.details}</div>
                 <div class="clinic"><b>Klinik jihati:</b> ${topic.clinic}</div>
                 <div class="usmle"><b>${topic.usmle}</b></div>
             `;
-            document.getElementById('modal-body').innerHTML = html;
             document.getElementById('modal-conspect').classList.remove('hidden');
         }
 
