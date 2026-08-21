@@ -7,23 +7,91 @@
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         body { font-family: sans-serif; background: #121212; color: white; padding: 15px; margin: 0; }
-        .card { background: #1e1e1e; padding: 15px; border-radius: 12px; margin-bottom: 12px; border: 1px solid #333; }
-        .tag { background: #0088cc; color: white; padding: 3px 8px; border-radius: 5px; font-size: 12px; }
-        h3 { margin: 8px 0 5px 0; font-size: 16px; color: #40a9ff; }
-        p { font-size: 14px; margin: 5px 0; color: #ccc; }
+        .card { background: #1e1e1e; padding: 15px; border-radius: 12px; margin-bottom: 12px; cursor: pointer; border: 1px solid #333; transition: 0.2s; }
+        .card:hover { border-color: #40a9ff; background: #252525; }
+        h2 { text-align: center; color: #40a9ff; margin-bottom: 20px; }
+        .hidden { display: none; }
+        .back-btn { color: #40a9ff; margin-bottom: 15px; cursor: pointer; display: inline-block; font-weight: bold; }
+        .sub-title { font-size: 13px; color: #888; margin-top: 5px; }
     </style>
 </head>
 <body>
-    <h2 style="text-align: center;">MedEcosystem</h2>
-    
-    <div class="card">
-        <span class="tag">1-KURS</span> <span class="tag">Anatomiya</span>
-        <h3>Yurakning o'tkazuvchi tizimi</h3>
-        <p><b>Konspekt:</b> Sinus-atrial tugun, atrioventrikulyar tugun va His tutamlaridan iborat.</p>
-        <p><b>Klinik ahamiyati:</b> Aritmiya va blokadalarni tushunishda asosiy manba.</p>
+    <!-- Asosiy sahifa: Kurslar -->
+    <div id="home-view">
+        <h2>MedEcosystem - Kursni tanlang</h2>
+        <div class="card" onclick="showSubjects('1-kurs')">
+            <h3>1-Kurs</h3>
+            <div class="sub-title">Anatomiya, Histologiya, Fiziologiya, Kimyo va boshqalar</div>
+        </div>
+        <div class="card" onclick="showSubjects('2-kurs')">
+            <h3>2-Kurs</h3>
+            <div class="sub-title">Biokimyo, Normal fiziologiya, Mikrobiologiya</div>
+        </div>
+        <div class="card" onclick="showSubjects('3-kurs')">
+            <h3>3-Kurs</h3>
+            <div class="sub-title">Patologik anatomiya, Patofiziologiya, Farmakologiya</div>
+        </div>
+    </div>
+
+    <!-- Fanlar ro'yxati sahifasi -->
+    <div id="subject-view" class="hidden">
+        <span class="back-btn" onclick="showHome()">← Kurslarga qaytish</span>
+        <h2 id="course-title"></h2>
+        <div id="subject-list"></div>
     </div>
 
     <script>
+        // Har bir kurs uchun fanlar bazasi
+        const curriculum = {
+            '1-kurs': [
+                'Anatomiya', 
+                'Gistologiya, sitologiya va embriologiya', 
+                'Medical va Tibbiy biologiya', 
+                'Tibbiy kimyo', 
+                'Tibbiy va biologik fizika, IT', 
+                'Lotin tili va tibbiy terminologiya', 
+                'Tibbiyot kasbiga kirish', 
+                'Ingliz tili', 
+                'Falsafa', 
+                'Oʻzbekistonning eng yangi tarixi'
+            ],
+            '2-kurs': [
+                'Biokimyo (Biochemistry)', 
+                'Normal fiziologiya', 
+                'Mikrobiologiya, virologiya va immunologiya', 
+                'Gigiena va tibbiy ekologiya', 
+                'Psixologiya va Dinshunoslik',
+                'Klinik amaliyot asoslari'
+            ],
+            '3-kurs': [
+                'Patologik anatomiya', 
+                'Patologik fiziologiya', 
+                'Farmakologiya', 
+                'Ichki kasalliklar propedevtikasi', 
+                'Umumiy xirurgiya', 
+                'Bolalar kasalliklari propedevtikasi',
+                'Jamoat salomatligi va menejment'
+            ]
+        };
+
+        function showSubjects(course) {
+            document.getElementById('home-view').classList.add('hidden');
+            document.getElementById('subject-view').classList.remove('hidden');
+            document.getElementById('course-title').innerText = course.toUpperCase().replace('-', ' ');
+            
+            const list = document.getElementById('subject-list');
+            list.innerHTML = '';
+            
+            curriculum[course].forEach(sub => {
+                list.innerHTML += `<div class="card" onclick="alert('${sub} fani tanlandi!')"><h3>${sub}</h3><div class="sub-title">Konspektlar va materiallarni ko'rish</div></div>`;
+            });
+        }
+
+        function showHome() {
+            document.getElementById('subject-view').classList.add('hidden');
+            document.getElementById('home-view').classList.remove('hidden');
+        }
+
         window.Telegram.WebApp.ready();
     </script>
 </body>
