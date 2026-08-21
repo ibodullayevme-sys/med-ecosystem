@@ -2,7 +2,7 @@
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
-    <title>MedEcosystem - Anatomiya To'liq Mundarija</title>
+    <title>MedEcosystem - Anatomiya To'liq Mundarija (USMLE)</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         body { font-family: sans-serif; background: #121212; color: white; padding: 15px; margin: 0; }
@@ -13,8 +13,9 @@
         .hidden { display: none; }
         .back-btn { color: #40a9ff; margin-bottom: 15px; cursor: pointer; font-weight: bold; display: inline-block; }
         p { color: #aaa; font-size: 14px; line-height: 1.4; margin: 6px 0; }
-        .section-title { color: #ffab00; margin-top: 15px; font-size: 16px; border-bottom: 1px solid #444; padding-bottom: 5px; }
+        .section-title { color: #ffab00; margin-top: 20px; font-size: 17px; border-bottom: 1px solid #444; padding-bottom: 5px; font-weight: bold; }
         .clinic { color: #ff4d4f; font-size: 13px; margin-top: 8px; border-left: 2px solid #ff4d4f; padding-left: 8px; }
+        .usmle { color: #52c41a; font-size: 13px; margin-top: 6px; border-left: 2px solid #52c41a; padding-left: 8px; }
     </style>
 </head>
 <body>
@@ -23,7 +24,7 @@
         <h2>MedEcosystem</h2>
         <div class="card clickable" onclick="showSubjects('1-kurs')">
             <h3>1-Kurs</h3>
-            <p>Anatomiya (Mundarija bo'yicha to'liq), Histologiya, Tibbiy kimyo</p>
+            <p>Anatomiya (To'liq mundarija + USMLE), Histologiya, Tibbiy kimyo</p>
         </div>
         <div class="card clickable" onclick="showSubjects('2-kurs')">
             <h3>2-Kurs</h3>
@@ -42,7 +43,7 @@
         <div id="list-subjects"></div>
     </div>
 
-    <!-- 3. Mavzular va Mundarija -->
+    <!-- 3. Mavzular va Ma'lumotlar -->
     <div id="view-topics" class="hidden">
         <div class="back-btn" onclick="goBack('view-subjects')">← Fanlarga qaytish</div>
         <h2 id="title-topics"></h2>
@@ -55,88 +56,68 @@
                 'Anatomiya': [
                     // I BO'LIM. OSTEOLOGIA
                     { type: 'header', title: 'I BOʻLIM. OSTEOLOGIA (Suyaklar tizimi)' },
-                    { 
-                        title: 'Suyak toʻqimasi va naysimon suyak tuzilishi', 
-                        text: 'Suyak toʻqimasining mikroskopik tuzilishi, periost pardasi va naysimon suyaklar epifiz, diafiz qismlari.',
-                        clinic: 'Klinik jihati: Periostit (suyak pardasi yalligʻlanishi) va suyak oʻsish nuqsonlari.'
-                    },
-                    { 
-                        title: 'Suyaklar tasnifi va tana skeleti', 
-                        text: 'Suyaklarning shakliga koʻra turlari (naysimon, yassi, kalta), umurtqa pogʻonasi va koʻkrak qafasi tuzilishi.',
-                        clinic: 'Klinik jihati: Skolioz, kifoz kabi umurtqa egriliklari va koʻkrak qafasi deformatsiyalari.'
-                    },
-                    { 
-                        title: 'Qoʻl va oyoq suyaklari skeleti', 
-                        text: 'Kurak, oʻmrov, yelka, tirsak, bilak, qoʻl panjasi hamda butun chanoq, son, boldir va oyoq panjasi suyaklari.',
-                        clinic: 'Klinik jihati: Chanoq oʻlchamlari patologiyalari, tirsak va boldir suyaklari sinishlari.'
-                    },
-                    { 
-                        title: 'Bosh skeleti (Kalla suyaklari)', 
-                        text: 'Peshona, tepa, ensa, gʻalvirsimon, ponasimon, chakka suyaklari, chakka kanallari va yuz qism suyaklari (yuqori va pastki jagʻ).',
-                        clinic: 'Klinik jihati: Kalla suyagi yoriqlari, yuz suyaklari jarohatlari va liqildoqlar holati.'
-                    },
+                    { title: '1. Suyak toʻqimasi', text: 'Osteotsitlar, osteoblastlar va osteoklastlarning hujayralararo modda hosil qilishdagi ishtiroki.', clinic: 'Osteoporozda suyak rezbsiyasining ustun kelishi.', usmle: 'USMLE: Osteoklastlar makrofaglar liniyasidan kelib chiqadi va RANKL reseptori orqali faollashadi.' },
+                    { title: '2. Naysimon suyak tuzilishi', text: 'Diafiz, epifiz, metafiz, kompakt va gubkali moddalarning joylashuvi.', clinic: 'Bolalarda epifiz oʻsish zonasining jarohatlanishi suyak oʻsmay qolishiga olib keladi.', usmle: 'USMLE: Uzun naysimon suyaklarning oʻsishi epifiz xaftasining endoxondral ossifikatsiyasi hisobiga yuzaga keladi.' },
+                    { title: '3. Yassi suyak tuzilishi', text: 'Kalla gumbazi suyaklarining tashqi va ichki plastinkalari hamda orasidagi diploe qatlami.', clinic: 'Diploe venalarining yalligʻlanishi sinus tromboflebitiga sabab boʻlishi mumkin.', usmle: 'USMLE: Diploe qatlami qizil ilikni saqlaydi va travmalarda zarbani yumshatadi.' },
+                    { title: '4. Suyaklanish', text: 'Desmal (biriktiruvchi toʻqimadan) va endoxondral (xaftadan) suyaklanish jarayonlari.', clinic: 'Achondroplaziya xaftaning endoxondral ossifikatsiyasi buzilishi natijasida yuzaga keladi.', usmle: 'USMLE: Fibroblastlarning toʻgʻridan-toʻgʻri suyakka aylanishi desmal ossifikatsiya deyiladi (kalla suyagi gumbazi).' },
+                    { title: '5. Periost pardasi', text: 'Suyakning tashqi qoplamasi, kambial qatlami va uning hisobiga suyakning eniga oʻsishi.', clinic: 'Periostit vaqtida kuchli ogʻriq va shish kuzatiladi.', usmle: 'USMLE: Periost qon tomir va nervlarga boy boʻlib, suyakning tropik taʼminoti va regeneratsiyasida asosiy rol oʻynaydi.' },
+                    { title: '6. Suyaklar tasnifi', text: 'Naysimon, yassi, kalta, aralash va havo saqlovchi suyaklar.', clinic: 'Osteosarkoma koʻpincha uzun naysimon suyaklarning metafiz qismida uchraydi.', usmle: 'USMLE: Havo saqlovchi suyaklar (sinusli) kalla ogʻirligini kamaytiradi va ovoz rezonatoridir.' },
+                    { title: '7. Tana skeleti', text: 'Aksial va appendikulyar skeletning umumiy nisbati va topografiyasi.', clinic: 'Tana skeleti deformatsiyalari ichki organlar faoliyatini buzadi.', usmle: 'USMLE: Aksial skeletga kalla, umurtqa pogʻonasi va koʻkrak qafasi kiradi.' },
+                    { title: '8. Umurtqa pogʻonasi', text: 'Boʻyin, koʻkrak, bel, dumgʻaza va dum boʻlimlari, fiziologik egri chiziqlar (lordoz, kifoz).', clinic: 'Skolioz va lordozning patologik kuchayishi.', usmle: 'USMLE: Disk churrasi koʻpincha orqa-yon tomonga chiqib, nerv ildizchalarini siqib chiqaradi.' },
+                    { title: '9. Koʻkrak qafasi', text: 'Toʻsh, qovurgʻalar va koʻkrak umurtqalarining oʻzaro birikishi.', clinic: 'Pektus excavatum (kabutar koʻkrak yoki voronka shaklidagi koʻkrak qafasi).', usmle: 'USMLE: Natorakal jarohatlarda qovurgʻalar ostidagi qon tomir va nervlar (neurovascular bundle) zararlanishi mumkin.' },
+                    { title: '10. Toʻsh', text: 'Dastagi, tanasi va xanjarsimon oʻsigʻining tuzilishi.', text_extra: 'Sternal punksiya qilish uchun asosiy nuqta.', clinic: 'Toʻsh sinishlari koʻpincha avtohalokatlarda xavfli mediastinal aʼzolarni shikastlaydi.', usmle: 'USMLE: Sternal punksiya orqali qon yaratish tizimi kasalliklarini oʻrganish uchun ilik olinadi.' },
+                    { title: '11. Qovurgʻalar', text: 'Haqiqiy, soxta va erkin qovurgʻalarning tuzilishi va farqlari.', clinic: 'Qovurgʻalar sinishida pnevmotoraks xavfi yuqori.', usmle: 'USMLE: 10-12 qovurgʻalar sinishi buyrak yoki taloq yorilishiga olib kelishi mumkin.' },
+                    { title: '12. Qoʻl suyaklari', text: 'Kurak, oʻmrov, yelka, tirsak, bilak va qoʻl panjasi suyaklari.', clinic: 'Oʻmrov suyagi sinishi yelka kamarining tushib ketishiga olib keladi.', usmle: 'USMLE: Oʻmrov suyagi tanadagi eng koʻp sinadigan suyaklardan biridir.' },
+                    { title: '13. Oyoq suyaklari', text: 'Chanoq suyaklari, son, tizza qopqogʻi, katta va kichik boldir, oyoq panjasi.', clinic: 'Son suyagi boʻyni sinishi keksalar orasida juda xavfli.', usmle: 'USMLE: Chanoq halqasining uzilishi ogʻir ichki qon ketishlarga sabab boʻladi.' },
+                    { title: '14. Bosh skeleti (Kalla suyaklari)', text: 'Peshona, tepa, ensa, gʻalvirsimon, ponasimon, chakka suyaklari va yuz qism suyaklari.', clinic: 'Kalla asosi yoriqlarida likvoreya (burun yoki quloqdan miya suyuqligi oqishi) kuzatiladi.', usmle: 'USMLE: Pterion sohasi zarlanganda oʻrta menimgeal arteriya yorilib, epidural gematoma hosil qiladi.' },
 
                     // II BO'LIM. ARTHROLOGIA
                     { type: 'header', title: 'II BOʻLIM. ARTHROLOGIA (Boʻgʻimlar va birikishlar)' },
-                    { 
-                        title: 'Boʻgʻim komponentlari va turlari', 
-                        text: 'Boʻgʻim yuzasi, xaltasi, boʻshligʻi, bosh suyaklarining birikish turlari va choklar.',
-                        clinic: 'Klinik jihati: Artrit, artroz va boʻgʻim chiqishlari (dislokatsiya).'
-                    },
-                    { 
-                        title: 'Umurtqalar va koʻkrak qafasining birikishi', 
-                        text: 'Umurtqalarning oʻzaro birikishi, chakka-pastki jagʻ boʻgʻimi, qoʻl va oyoq suyaklari birikishlari.',
-                        clinic: 'Klinik jihati: Jagʻ boʻgʻimi disfunksiyasi va umurtqalararo disk churrasi (gryja).'
-                    },
+                    { title: '1. Boʻgʻim komponentlari', text: 'Asosiy va yordamchi elementlar: boʻgʻim yuzasi, xaltasi, boʻshligʻi, boylamlar va disklar.', clinic: 'Artrit va artroz kasalliklari.', usmle: 'USMLE: Sinovial suyuqlik hyalin xaftani oziqlantiradi va ishqalanishni kamaytiradi.' },
+                    { title: '2. Bosh suyaklari birlashuvi va choklar', text: 'Tishsimon, qarsaksimon va yassi choklar.', clinic: 'Kraniosinostoz (choklarning oʻz vaqtidan oldin bitishi).', usmle: 'USMLE: Choklar miya oʻsishi uchun zarur boʻlgan moslashuvchanlikni taʼminlaydi.' },
+                    { title: '3. Chakka-pastki jagʻ boʻgʻimi', text: 'Ikki qismga boʻlingan diskli murakkab boʻgʻim.', clinic: 'Jagʻning chiqib qolishi yoki klikillashi.', usmle: 'USMLE: Ogʻizni ochganda pastki jagʻ boshi boʻgʻim doʻngligiga oldinga chiqadi.' },
+                    { title: '4. Umurtqalarning oʻzaro birikishi', text: 'Disklar, oldingi va orqadagi umumiy boylamlar.', clinic: 'Disk churrasi va osteoxondroz.', usmle: 'USMLE: Ankilozirlovchi spondilit (Bexterev kasalligi) umurtqalararo boʻgʻimlarning qotib qolishiga olib keladi.' },
+                    { title: '5. Qoʻl va oyoq suyaklari birikishlari', text: 'Yelka, tirsak, tizza va boldir boʻgʻimlarining biomekanikasi.', clinic: 'Tizza boʻgʻimi menisklarining yirtilishi.', usmle: 'USMLE: Oldingi xochsimon boylam (ACL) tizza boʻgʻimining oldinga surilishining oldini oladi.' },
+                    { title: '6. Shopar va Lisfrank boʻgʻimlari', text: 'Oyoq panjasining koʻndalang boʻgʻimlari.', clinic: 'Jarrohlikdagi kesish va amputatsiya orientirlari.', usmle: 'USMLE: Chopar va Lisfrank chiziqlari oyoq panjasi travmatologiyasida kesma oʻtkazish uchun asosiy anatomik chegaradir.' },
 
-                    // III BO'LIM. MYOLOGIA
-                    { type: 'header', title: 'III BOʻLIM. MYOLOGIA (Mushaklar tizimi)' },
-                    { 
-                        title: 'Mushak anatomiyasi va yordamchi apparatlari', 
-                        text: 'Mushak toʻqimasi, fassiyalar, qinlar, toʻsigʻlar va mexanik xususiyatlari.',
-                        clinic: 'Klinik jihati: Miogezoz va fassial boʻshliqlarda yiringli yalligʻlanishlar.'
-                    },
-                    { 
-                        title: 'Bosh, boʻyin va koʻkrak mushaklari', 
-                        text: 'Chaynash va mimika mushaklari, boʻyin fassiyalari, koʻkrak mushaklari va diafragma.',
-                        clinic: 'Klinik jihati: Diafragma churralari va yuz mushaklari falaji (Bell falaji).'
-                    },
-                    { 
-                        title: 'Qorin, qoʻl va oyoq mushaklari', 
-                        text: 'Qorin devori, chov kanali, orqa mushaklari, yelka, bilak, son va boldir mushak-topografiyasi.',
-                        clinic: 'Klinik jihati: Chov churralari (grija) va mushak atrofiyalari.'
-                    }
+                    // III BO'LIM. MIOLOGIA
+                    { type: 'header', title: 'III BOʻLIM. MIOLOGIA (Mushaklar tizimi)' },
+                    { title: '1. Mushak anatomiyasi va gistologiyasi', text: 'Skelet mushak toʻqimasi, misofibrillar, sarkomer.', clinic: 'Miopatiyalar va mushak atrofiyalari.', usmle: 'USMLE: Mushak qisqarishi uchun kalsiy ionlari sarkoplazmatik retikulumdan troponin-C ga birikishi shart.' },
+                    { title: '2. Bosh mushaklari', text: 'Mimika va chaynash mushaklarining topografiyasi.', clinic: 'Yuz nervi falajida yuz simmetriyasining buzilishi.', usmle: 'USMLE: Chaynash mushaklari uchki nervning (n. trigeminus - V juft) quyi jagʻ shoxchasi orqali innervatsiya qilinadi.' },
+                    { title: '3. Boʻyin mushaklari va fassiyalari', text: 'Yuza, oʻrta va chuqur qavat mushaklari, boʻyin fassiyalari.', clinic: 'Boʻyin fassial boʻshliqlari orqali yiring mediastinimgacha tarqalishi mumkin.', usmle: 'USMLE: Toʻsh-oʻmrov-soʻrgʻichsimon mushak (SCM) qoʻshimcha nerv (XI juft) bilan innervatsiya qilinadi.' },
+                    { title: '4. Koʻkrak va qorin mushaklari', text: 'Pektoral mushaklar, interkostal mushaklar va qorin oldi-yon devori.', clinic: 'Chov churralari va diafragma churralari.', usmle: 'USMLE: Chov kanali devorlari va uning ichidan oʻtuvchi anatomik tuzilmalar xirurgiyaning eng muhim mavzusidir.' },
+                    { title: '5. Orqa, qoʻl va oyoq mushaklari', text: 'Trapetsiyasimon, keng orqa mushagi, yelka va son mushaklari guruhlari.', clinic: 'Rotator qobiq yirtilishi va tendinitlar.', usmle: 'USMLE: N. radialis shikastlanganda "osilib qolgan qoʻl" (wrist drop) simptomi kuzatiladi.' }
                 ],
                 'Histologiya': [
-                    { title: '1. Epiteliy va qon toʻqimasi', text: 'Toʻqimalarning umumiy tasnifi va qon hujayralarining gistologik tuzilishi.', clinic: 'Klinik jihati: Anemiya va leykoz tashxislari.' }
+                    { title: '1. Epiteliy va qon toʻqimasi', text: 'Toʻqimalarning umumiy tasnifi va qon hujayralarining gistologik tuzilishi.', clinic: 'Anemiya va leykoz tashxislari.', usmle: 'USMLE: Eritrotsitlar membranasining oqsil skeleti nuqsonlari (sferotsitoz).' }
                 ],
                 'Tibbiy kimyo': [
-                    { title: '1. Eritmalar va pH muhit', text: 'Bufer sistemalar va osmotik bosim qonunchiligi.', clinic: 'Klinik jihati: Kislota-asos muvozanatining buzilishi.' }
+                    { title: '1. Eritmalar va pH muhit', text: 'Bufer sistemalar va osmotik bosim qonunchiligi.', clinic: 'Kislota-asos muvozanatining buzilishi (asidoz, alkaloz).', usmle: 'USMLE: Anion farqining (Anion gap) metabolik asidozdagi klinik ahamiyati.' }
                 ],
                 'Lotin tili': [
-                    { title: '1. Anatomik terminologiya', text: 'Lotincha atamalar, kelishiklar va retsept yozish asoslari.', clinic: 'Klinik jihati: Tibbiy hujjatlar va retseptura.' }
+                    { title: '1. Anatomik terminologiya', text: 'Lotincha atamalar, kelishiklar va retsept yozish asoslari.', clinic: 'Tibbiy hujjatlar va retseptura.', usmle: 'USMLE: Xalqaro anatomik nomenclatura (PNA).' }
                 ]
             },
             '2-kurs': {
                 'Biokimyo': [
-                    { title: '1. Oqsil va uglevod almashinuvi', text: 'Glikoliz va mochevina hosil boʻlish sikli.', clinic: 'Klinik jihati: Qandli diabet patobioximiyasi.' }
+                    { title: '1. Oqsil va uglevod almashinuvi', text: 'Glikoliz va mochevina hosil boʻlish sikli.', clinic: 'Qandli diabet patobioximiyasi.', usmle: 'USMLE: Glikolizda Glikogen fosforilaza yetishmovchiligi (McArdle kasalligi).' }
                 ],
                 'Normal fiziologiya': [
-                    { title: '1. Qon fiziologiyasi va gemostaz', text: 'Qon ivish sistemasi va gomeostaz.', clinic: 'Klinik jihati: Trombofiliya va qon oqish kasalliklari.' }
+                    { title: '1. Qon fiziologiyasi va gemostaz', text: 'Qon ivish sistemasi va gomeostaz.', clinic: 'Trombofiliya va qon oqish kasalliklari.', usmle: 'USMLE: Villebrand omili va gemofiliya A/B patogenezi.' }
                 ],
                 'Mikrobiologiya': [
-                    { title: '1. Bakteriyalar va viruslar', text: 'Morfologiya va boʻyalish usullari.', clinic: 'Klinik jihati: Antibiotiklarga rezistentlik.' }
+                    { title: '1. Bakteriyalar va viruslar', text: 'Morfologiya va boʻyalish usullari.', clinic: 'Antibiotiklarga rezistentlik.', usmle: 'USMLE: Gram-musbat va Gram-manfiy bakteriyalar hujayra devori farqlari.' }
                 ]
             },
             '3-kurs': {
                 'Patologik anatomiya': [
-                    { title: '1. Hujayra shikastlanishi va nekroz', text: 'Morfologik oʻzgarishlar.', clinic: 'Klinik jihati: Infarkt va gangrena.' }
+                    { title: '1. Hujayra shikastlanishi va nekroz', text: 'Morfologik oʻzgarishlar va oʻlim turlari.', clinic: 'Infarkt va gangrena.', usmle: 'USMLE: Koagulyatsion nekroz yurak infarktida xarakterli boʻlib, miokard hujayralarining ishemiyasidan kelib chiqadi.' }
                 ],
                 'Patofiziologiya': [
-                    { title: '1. Tipik patologik jarayonlar', text: 'Isitma va gipoksiya.', clinic: 'Klinik jihati: Shok holatlari.' }
+                    { title: '1. Tipik patologik jarayonlar', text: 'Isitma va gipoksiya mexanizmlari.', clinic: 'Shok holatlari va koma.', usmle: 'USMLE: Septik shokda endotoksinlar taʼsirida vazodilatatsiya va qon bosimining keskin tushishi.' }
                 ],
                 'Farmakologiya': [
-                    { title: '1. Umumiy farmakokinetika', text: 'Dorilarning organizmga taʼsiri.', clinic: 'Klinik jihati: Dori vositalarining nojoʻya taʼsirlari.' }
+                    { title: '1. Umumiy farmakokinetika', text: 'Dorilarning organizmga taʼsiri va chiqarilishi.', clinic: 'Dori vositalarining nojoʻya taʼsirlari.', usmle: 'USMLE: Jigar sitoxrom P450 tizimining dori metabolizmidagi roli va oʻzaro taʼsiri.' }
                 ]
             }
         };
@@ -149,7 +130,7 @@
             let list = document.getElementById('list-subjects');
             list.innerHTML = '';
             for (let sub in data[course]) {
-                list.innerHTML += `<div class="card clickable" onclick="showTopics('${course}', '${sub}')"><h3>${sub}</h3><p>Muvofiq bo'limlarni ko'rish →</p></div>`;
+                list.innerHTML += `<div class="card clickable" onclick="showTopics('${course}', '${sub}')"><h3>${sub}</h3><p>Mavzular va USMLE tahlilini ko'rish →</p></div>`;
             }
         }
 
@@ -162,13 +143,14 @@
             list.innerHTML = '';
             data[course][subject].forEach(topic => {
                 if(topic.type === 'header') {
-                    list.innerHTML += `<div class="section-title"><b>${topic.title}</b></div>`;
+                    list.innerHTML += `<div class="section-title">${topic.title}</div>`;
                 } else {
                     list.innerHTML += `
                         <div class="card">
                             <h3 style="color:#40a9ff; text-align: left; font-size: 16px;">${topic.title}</h3>
                             <p>${topic.text}</p>
                             <div class="clinic"><b>Klinik jihati:</b> ${topic.clinic}</div>
+                            <div class="usmle"><b>${topic.usmle}</b></div>
                         </div>`;
                 }
             });
