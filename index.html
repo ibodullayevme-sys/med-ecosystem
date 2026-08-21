@@ -2,19 +2,23 @@
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
-    <title>Med Hub - Anatomiya</title>
+    <title>Med Hub</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f172a; color: #f8fafc; padding: 16px; margin: 0; padding-bottom: 50px; }
         .header { text-align: center; margin-bottom: 20px; }
         .header h2 { color: #38bdf8; margin: 0 0 5px 0; font-size: 22px; }
-        .bot-badge { color: #fbbf24; font-size: 12px; font-weight: bold; background: #1e293b; padding: 4px 10px; border-radius: 20px; border: 1px solid #334155; display: inline-block; }
+        .bot-badge { color: #fbbf24; font-size: 12px; font-weight: bold; background: #1e293b; padding: 4px 10px; border-radius: 20px; border: 1px solid #334155; display: inline-block; margin-bottom: 8px; }
         
-        .section-title { color: #fbbf24; font-size: 16px; margin: 20px 0 10px 0; border-bottom: 1px solid #334155; padding-bottom: 5px; font-weight: 700; }
-        .card { background: #1e293b; padding: 12px 16px; border-radius: 10px; margin-bottom: 8px; border: 1px solid #334155; cursor: pointer; transition: 0.2s; }
+        .section-title { color: #fbbf24; font-size: 15px; margin: 20px 0 10px 0; border-bottom: 1px solid #334155; padding-bottom: 5px; font-weight: 700; }
+        .card { background: #1e293b; padding: 14px 16px; border-radius: 12px; margin-bottom: 10px; border: 1px solid #334155; cursor: pointer; transition: 0.2s; }
         .card:hover { border-color: #38bdf8; background: #273548; }
-        .card h3 { margin: 0; color: #fff; font-size: 15px; font-weight: 500; }
+        .card h3 { margin: 0 0 4px 0; color: #fff; font-size: 16px; }
+        .card p { margin: 0; color: #94a3b8; font-size: 13px; }
+        
+        .hidden { display: none !important; }
+        .back-btn { color: #38bdf8; margin-bottom: 15px; cursor: pointer; font-weight: 600; display: inline-flex; align-items: center; font-size: 14px; }
         
         .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15,23,42,0.95); display: none; padding: 20px; box-sizing: border-box; overflow-y: auto; z-index: 1000; }
         .modal-content { background: #1e293b; padding: 20px; border-radius: 16px; border: 1px solid #38bdf8; max-width: 600px; margin: auto; position: relative; }
@@ -24,63 +28,140 @@
 </head>
 <body>
 
-<div class="header">
-    <span class="bot-badge">@MedHubOfficial_bot</span>
-    <h2>Anatomiya Konspektlari</h2>
-</div>
-
-<!-- I BO'LIM -->
-<div class="section-title">I BOʻLIM. OSTEOLOGIA (Suyaklar tizimi)</div>
-<div class="card" onclick="showTopic('Suyak toʻqimasi va tuzilishi', 'Naysimon va yassi suyaklarning mikroskopik hamda makroskopik tuzilishi, periost pardasi va suyaklanish jarayonlari.')"><h3>Suyak toʻqimasi va tuzilishi</h3></div>
-<div class="card" onclick="showTopic('Suyaklar tasnifi', 'Suyaklarning shakli, tuzilishi va vazifasiga koʻra turlarga boʻlinishi.')"><h3>Suyaklar tasnifi</h3></div>
-<div class="card" onclick="showTopic('Tana skeleti', 'Umurtqa pogʻonasi, koʻkrak qafasi, toʻsh va qovurgʻalarning anatomik tuzilishi.')"><h3>Tana skeleti</h3></div>
-<div class="card" onclick="showTopic('Qoʻl suyaklari', 'Kurak, oʻmrov, yelka, tirsak, bilak va qoʻl panjasi suyaklari.')"><h3>Qoʻl suyaklari</h3></div>
-<div class="card" onclick="showTopic('Oyoq suyaklari', 'Butun chanoq, chanoq oʻlchamlari, son, boldir va oyoq panjasi suyaklari.')"><h3>Oyoq suyaklari</h3></div>
-<div class="card" onclick="showTopic('Bosh skeleti (Kalla suyagi)', 'Peshona, tepa, ensa, gʻalvirsimon, ponasimon, chakka va uning kanallari.')"><h3>Bosh skeleti (Neyrokranium)</h3></div>
-<div class="card" onclick="showTopic('Yuz qismi suyaklari', 'Yuqori jagʻ, tanglay, koʻzyoshi, yanoq, burun, pastki jagʻ va til osti suyagi.')"><h3>Yuz qismi suyaklari</h3></div>
-<div class="card" onclick="showTopic('Kalla topografiyasi', 'Tashqi va ichki kalla asosi, koʻz kosasi, burun boʻshligʻi, chuqurchalar va liqildoqlar.')"><h3>Kalla topografiyasi</h3></div>
-
-<!-- II BO'LIM -->
-<div class="section-title">II BOʻLIM. ARTHROLOGIA (Boʻgʻimlar va birikishlar)</div>
-<div class="card" onclick="showTopic('Boʻgʻim komponentlari va birlashuvlar', 'Boʻgʻim elementlari, bosh suyaklari choklari, chakka-pastki jagʻ boʻgʻimi.')"><h3>Boʻgʻimlar va birikishlar asoslari</h3></div>
-<div class="card" onclick="showTopic('Umurtqa va koʻkrak qafasi birlashuvi', 'Umurtqalarning oʻzaro birikishi, kalla-umurtqa birlashmalari va koʻkrak qafasi suyaklari birikishi.')"><h3>Umurtqa va koʻkrak birlashuvi</h3></div>
-<div class="card" onclick="showTopic('Qoʻl va oyoq boʻgʻimlari', 'Qoʻl, oyoq suyaklari birlashuvi, Shopar va Lisfrank boʻgʻimlari.')"><h3>Qoʻl va oyoq boʻgʻimlari</h3></div>
-
-<!-- III BO'LIM -->
-<div class="section-title">III BOʻLIM. MIOLOGIA (Mushaklar tizimi)</div>
-<div class="card" onclick="showTopic('Mushak anatomiyasi va gistologiyasi', 'Mushaklarning umumiy tuzilishi, gistologik tuzilishi va yordamchi apparatlari.')"><h3>Mushaklar haqida umumiy tushuncha</h3></div>
-<div class="card" onclick="showTopic('Bosh va boʻyin mushaklari', 'Chaynash va mimika mushaklari, bosh fassiyalari, boʻyinning uchta qavati va fassiyalari, topografiyasi.')"><h3>Bosh va boʻyin mushaklari</h3></div>
-<div class="card" onclick="showTopic('Koʻkrak va qorin mushaklari', 'Koʻkrak mushaklari, diafragma, qorin devorining devorlari, chov kanali va fassiyalari.')"><h3>Koʻkrak va qorin mushaklari</h3></div>
-<div class="card" onclick="showTopic('Orqa mushaklari', 'Yuza, yuzaga yaqin va chuqur mushaklar hamda orqa fassiyalari.')"><h3>Orqa mushaklari</h3></div>
-<div class="card" onclick="showTopic('Qoʻl mushaklari', 'Yelka kamari, yelka, tirsak va bilak mushaklari guruhlari hamda panja mushaklari.')"><h3>Qoʻl mushaklari</h3></div>
-
-<!-- Modal -->
-<div id="modal" class="modal" onclick="closeOnBackground(event)">
-    <div class="modal-content">
-        <span class="close-btn" onclick="closeModal()">&times;</span>
-        <h2 id="modal-title" style="color:#fbbf24; margin-top:0; font-size:18px;"></h2>
-        <div id="modal-text" class="content-box"></div>
+    <!-- 1. BOSH SAHIFA: KURSLAR -->
+    <div id="view-courses">
+        <div class="header">
+            <span class="bot-badge">@MedHubOfficial_bot</span>
+            <h2>Med Hub</h2>
+            <p style="color: #94a3b8; font-size: 13px; margin: 0;">O'quv kurslari va konspektlar bazasi</p>
+        </div>
+        <div class="card" onclick="openCourse('1-Kurs')">
+            <h3>1-Kurs</h3>
+            <p>Anatomiya, Histologiya, Tibbiy kimyo, Lotin tili</p>
+        </div>
+        <div class="card" onclick="openCourse('2-Kurs')">
+            <h3>2-Kurs</h3>
+            <p>Biokimyo, Fiziologiya, Mikrobiologiya</p>
+        </div>
+        <div class="card" onclick="openCourse('3-Kurs')">
+            <h3>3-Kurs</h3>
+            <p>Pat. anatomiya, Patofiziologiya, Farmakologiya</p>
+        </div>
     </div>
-</div>
 
-<script>
-    function showTopic(title, text) {
-        document.getElementById('modal-title').innerText = title;
-        document.getElementById('modal-text').innerText = text;
-        document.getElementById('modal').style.display = 'flex';
-        document.body.style.overflow = 'hidden';
-    }
-    function closeModal() {
-        document.getElementById('modal').style.display = 'none';
-        document.body.style.overflow = '';
-    }
-    function closeOnBackground(e) {
-        if (e.target.id === 'modal') closeModal();
-    }
-    if (window.Telegram && window.Telegram.WebApp) {
-        window.Telegram.WebApp.ready();
-        window.Telegram.WebApp.expand();
-    }
-</script>
+    <!-- 2. FANLAR SAHifASI -->
+    <div id="view-subjects" class="hidden">
+        <div class="back-btn" onclick="goBack('view-courses')">← Kurslarga qaytish</div>
+        <h2 id="title-course" style="color: #38bdf8; text-align: center; margin-bottom: 15px;"></h2>
+        <div id="list-subjects"></div>
+    </div>
+
+    <!-- 3. ANATOMIYA MAVZULARI SAHIFASI -->
+    <div id="view-anatomy" class="hidden">
+        <div class="back-btn" onclick="goBack('view-subjects')">← Fanlarga qaytish</div>
+        <h2 style="color: #38bdf8; text-align: center; margin-bottom: 15px;">Anatomiya Konspektlari</h2>
+        
+        <!-- I BO'LIM -->
+        <div class="section-title">I BOʻLIM. OSTEOLOGIA (Suyaklar tizimi)</div>
+        <div class="card" onclick="showTopic('Suyak toʻqimasi va tuzilishi', 'Naysimon va yassi suyaklarning mikroskopik hamda makroskopik tuzilishi, periost pardasi va suyaklanish jarayonlari.')"><h3>Suyak toʻqimasi va tuzilishi</h3></div>
+        <div class="card" onclick="showTopic('Suyaklar tasnifi', 'Suyaklarning shakli, tuzilishi va vazifasiga koʻra turlarga boʻlinishi.')"><h3>Suyaklar tasnifi</h3></div>
+        <div class="card" onclick="showTopic('Tana skeleti', 'Umurtqa pogʻonasi, koʻkrak qafasi, toʻsh va qovurgʻalarning anatomik tuzilishi.')"><h3>Tana skeleti</h3></div>
+        <div class="card" onclick="showTopic('Qoʻl suyaklari', 'Kurak, oʻmrov, yelka, tirsak, bilak va qoʻl panjasi suyaklari.')"><h3>Qoʻl suyaklari</h3></div>
+        <div class="card" onclick="showTopic('Oyoq suyaklari', 'Butun chanoq, chanoq oʻlchamlari, son, boldir va oyoq panjasi suyaklari.')"><h3>Oyoq suyaklari</h3></div>
+        <div class="card" onclick="showTopic('Bosh skeleti (Kalla suyagi)', 'Peshona, tepa, ensa, gʻalvirsimon, ponasimon, chakka va uning kanallari.')"><h3>Bosh skeleti (Neyrokranium)</h3></div>
+        <div class="card" onclick="showTopic('Yuz qismi suyaklari', 'Yuqori jagʻ, tanglay, koʻzyoshi, yanoq, burun, pastki jagʻ va til osti suyagi.')"><h3>Yuz qismi suyaklari</h3></div>
+        <div class="card" onclick="showTopic('Kalla topografiyasi', 'Tashqi va ichki kalla asosi, koʻz kosasi, burun boʻshligʻi, chuqurchalar va liqildoqlar.')"><h3>Kalla topografiyasi</h3></div>
+
+        <!-- II BO'LIM -->
+        <div class="section-title">II BOʻLIM. ARTHROLOGIA (Boʻgʻimlar va birikishlar)</div>
+        <div class="card" onclick="showTopic('Boʻgʻim komponentlari va birlashuvlar', 'Boʻgʻim elementlari, bosh suyaklari choklari, chakka-pastki jagʻ boʻgʻimi.')"><h3>Boʻgʻimlar va birikishlar asoslari</h3></div>
+        <div class="card" onclick="showTopic('Umurtqa va koʻkrak qafasi birlashuvi', 'Umurtqalarning oʻzaro birikishi, kalla-umurtqa birlashmalari va koʻkrak qafasi suyaklari birikishi.')"><h3>Umurtqa va koʻkrak birlashuvi</h3></div>
+        <div class="card" onclick="showTopic('Qoʻl va oyoq boʻgʻimlari', 'Qoʻl, oyoq suyaklari birlashuvi, Shopar va Lisfrank boʻgʻimlari.')"><h3>Qoʻl va oyoq boʻgʻimlari</h3></div>
+
+        <!-- III BO'LIM -->
+        <div class="section-title">III BOʻLIM. MIOLOGIA (Mushaklar tizimi)</div>
+        <div class="card" onclick="showTopic('Mushak anatomiyasi va gistologiyasi', 'Mushaklarning umumiy tuzilishi, gistologik tuzilishi va yordamchi apparatlari.')"><h3>Mushaklar haqida umumiy tushuncha</h3></div>
+        <div class="card" onclick="showTopic('Bosh va boʻyin mushaklari', 'Chaynash va mimika mushaklari, bosh fassiyalari, boʻyinning uchta qavati va fassiyalari, topografiyasi.')"><h3>Bosh va boʻyin mushaklari</h3></div>
+        <div class="card" onclick="showTopic('Koʻkrak va qorin mushaklari', 'Koʻkrak mushaklari, diafragma, qorin devorining devorlari, chov kanali va fassiyalari.')"><h3>Koʻkrak va qorin mushaklari</h3></div>
+        <div class="card" onclick="showTopic('Orqa mushaklari', 'Yuza, yuzaga yaqin va chuqur mushaklar hamda orqa fassiyalari.')"><h3>Orqa mushaklari</h3></div>
+        <div class="card" onclick="showTopic('Qoʻl mushaklari', 'Yelka kamari, yelka, tirsak va bilak mushaklari guruhlari hamda panja mushaklari.')"><h3>Qoʻl mushaklari</h3></div>
+    </div>
+
+    <!-- Modal (Ma'lumot oynasi) -->
+    <div id="modal" class="modal" onclick="closeOnBackground(event)">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title" style="color:#fbbf24; margin-top:0; font-size:18px;"></h2>
+            <div id="modal-text" class="content-box"></div>
+        </div>
+    </div>
+
+    <script>
+        function openCourse(courseName) {
+            document.getElementById('view-courses').classList.add('hidden');
+            if (courseName === '1-Kurs') {
+                document.getElementById('view-subjects').classList.remove('hidden');
+                document.getElementById('title-course').innerText = '1-Kurs Fanlari';
+                document.getElementById('list-subjects').innerHTML = `
+                    <div class="card" onclick="openAnatomiya()">
+                        <h3>Anatomiya</h3>
+                        <p>Osteologiya, Artrologiya, Miologiya konspektlari</p>
+                    </div>
+                    <div class="card" onclick="alert('Tez kunda qoʻshiladi!')">
+                        <h3>Histologiya</h3>
+                        <p>Hujayra va toʻqimalar haqida ma'lumot</p>
+                    </div>
+                    <div class="card" onclick="alert('Tez kunda qoʻshiladi!')">
+                        <h3>Tibbiy kimyo</h3>
+                        <p>Kimyoviy jarayonlar va eritmalar</p>
+                    </div>
+                    <div class="card" onclick="alert('Tez kunda qoʻshiladi!')">
+                        <h3>Lotin tili</h3>
+                        <p>Anatomiya terminologiyasi</p>
+                    </div>
+                `;
+            } else {
+                document.getElementById('view-subjects').classList.remove('hidden');
+                document.getElementById('title-course').innerText = courseName;
+                document.getElementById('list-subjects').innerHTML = `
+                    <div class="card" onclick="alert('Bu fan uchun konspektlar tez kunda qoʻshiladi!')">
+                        <h3>Ushbu kurs fanlari</h3>
+                        <p>Hozircha faqat 1-kurs Anatomiya boʻlimi toʻliq ishlayapti.</p>
+                    </div>
+                `;
+            }
+        }
+
+        function openAnatomiya() {
+            document.getElementById('view-subjects').classList.add('hidden');
+            document.getElementById('view-anatomy').classList.remove('hidden');
+        }
+
+        function goBack(viewId) {
+            document.querySelectorAll('body > div').forEach(div => div.classList.add('hidden'));
+            document.getElementById(viewId).classList.remove('hidden');
+        }
+
+        function showTopic(title, text) {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-text').innerText = text;
+            document.getElementById('modal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        function closeOnBackground(e) {
+            if (e.target.id === 'modal') closeModal();
+        }
+
+        if (window.Telegram && window.Telegram.WebApp) {
+            window.Telegram.WebApp.ready();
+            window.Telegram.WebApp.expand();
+        }
+    </script>
 </body>
 </html>
