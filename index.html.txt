@@ -1,0 +1,106 @@
+v<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Med Hub</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body { font-family: sans-serif; background: #121212; color: white; padding: 15px; margin: 0; }
+        .card { background: #1e1e1e; padding: 15px; border-radius: 12px; margin-bottom: 12px; border: 1px solid #333; cursor: pointer; }
+        .card:hover { border-color: #40a9ff; background: #252525; }
+        h2, h3 { text-align: center; color: #40a9ff; }
+        .hidden { display: none; }
+        .back-btn { color: #40a9ff; margin-bottom: 15px; cursor: pointer; font-weight: bold; display: inline-block; }
+        p { color: #aaa; font-size: 14px; line-height: 1.4; margin: 6px 0; }
+        
+        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: flex; justify-content: center; align-items: center; z-index: 1000; padding: 20px; box-sizing: border-box; }
+        .modal-content { background: #1e1e1e; width: 100%; max-width: 600px; max-height: 90vh; overflow-y: auto; padding: 20px; border-radius: 14px; border: 1px solid #40a9ff; position: relative; }
+        .close-btn { position: absolute; top: 15px; right: 20px; font-size: 24px; color: #ff4d4f; cursor: pointer; font-weight: bold; }
+        .conspect-box { background: #252525; padding: 12px; border-radius: 8px; margin-top: 10px; border-left: 3px solid #ffab00; font-size: 14px; line-height: 1.5; }
+        .clinic { color: #ff4d4f; font-size: 13px; margin-top: 10px; border-left: 2px solid #ff4d4f; padding-left: 8px; }
+        .usmle { color: #52c41a; font-size: 13px; margin-top: 8px; border-left: 2px solid #52c41a; padding-left: 8px; }
+    </style>
+</head>
+<body>
+
+    <!-- Kurslar -->
+    <div id="view-courses">
+        <h2>Med Hub</h2>
+        <div class="card" onclick="openCourse('1-Kurs', ['Anatomiya', 'Histologiya', 'Tibbiy kimyo', 'Lotin tili'])">
+            <h3>1-Kurs</h3>
+            <p>Anatomiya, Histologiya, Tibbiy kimyo, Lotin tili</p>
+        </div>
+        <div class="card" onclick="openCourse('2-Kurs', ['Biokimyo', 'Normal fiziologiya', 'Mikrobiologiya'])">
+            <h3>2-Kurs</h3>
+            <p>Biokimyo, Normal fiziologiya, Mikrobiologiya</p>
+        </div>
+        <div class="card" onclick="openCourse('3-Kurs', ['Patologik anatomiya', 'Patofiziologiya', 'Farmakologiya'])">
+            <h3>3-Kurs</h3>
+            <p>Pat. anatomiya, Patofiziologiya, Farmakologiya</p>
+        </div>
+    </div>
+
+    <!-- Fanlar -->
+    <div id="view-subjects" class="hidden">
+        <div class="back-btn" onclick="goBack('view-courses')">← Kurslarga qaytish</div>
+        <h2 id="title-subjects"></h2>
+        <div id="list-subjects"></div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal-conspect" class="modal hidden">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modal-title" style="color: #ffab00; text-align: left; font-size: 18px; border-bottom: 1px solid #444; padding-bottom: 8px;"></h2>
+            <div id="modal-body"></div>
+        </div>
+    </div>
+
+    <script>
+        function openCourse(courseName, subjects) {
+            document.getElementById('view-courses').classList.add('hidden');
+            document.getElementById('view-subjects').classList.remove('hidden');
+            document.getElementById('title-subjects').innerText = courseName;
+            
+            let list = document.getElementById('list-subjects');
+            list.innerHTML = '';
+            
+            subjects.forEach(sub => {
+                list.innerHTML += `
+                    <div class="card" onclick="openTopic('${sub}')">
+                        <h3>${sub}</h3>
+                        <p>Konspektni ochish →</p>
+                    </div>`;
+            });
+        }
+
+        function openTopic(subjectName) {
+            let topic = {
+                title: subjectName + ' boʻyicha konspekt',
+                summary: 'Asosiy tushunchalar va batafsil maʼlumotlar.',
+                details: '• Bu yerda ' + subjectName + ' fanining toʻliq konspekt matnlari joylashadi.<br>• Barcha asosiy mexanizmlar va taʼriflar kiritilgan.',
+                clinic: 'Klinik ahamiyati: Amaliyotda qoʻllaniladigan muhim belgilar.',
+                usmle: 'USMLE testlari uchun muhim eslatma.'
+            };
+
+            document.getElementById('modal-title').innerText = topic.title;
+            document.getElementById('modal-body').innerHTML = `
+                <div class="conspect-box"><b>Konspekt:</b><br>${topic.details}</div>
+                <div class="clinic"><b>Klinik jihati:</b> ${topic.clinic}</div>
+                <div class="usmle"><b>${topic.usmle}</b></div>
+            `;
+            document.getElementById('modal-conspect').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('modal-conspect').classList.add('hidden');
+        }
+
+        function goBack(viewId) {
+            document.querySelectorAll('body > div').forEach(div => div.classList.add('hidden'));
+            document.getElementById(viewId).classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
