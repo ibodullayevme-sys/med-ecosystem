@@ -24,13 +24,12 @@
         .modal-content { background: #1e293b; padding: 20px; border-radius: 16px; border: 1px solid #38bdf8; max-width: 800px; margin: auto; position: relative; }
         .close-btn { color: #f87171; float: right; font-size: 28px; cursor: pointer; font-weight: bold; line-height: 20px; }
         
-        /* Mukammal kitob formatidagi matn */
         .book-text { background: #0f172a; padding: 20px; border-radius: 10px; border-left: 4px solid #38bdf8; margin-top: 15px; line-height: 1.85; font-size: 14px; color: #e2e8f0; white-space: pre-line; }
     </style>
 </head>
 <body>
 
-    <!-- 1. BOSH SAHIFA: KURSLAR -->
+    <!-- BOSH SAHIFA -->
     <div id="view-courses">
         <div class="header">
             <span class="bot-badge">@MedHubOfficial_bot</span>
@@ -45,123 +44,30 @@
             <h3>2-Kurs</h3>
             <p>Biokimyo, Fiziologiya, Mikrobiologiya</p>
         </div>
-        <div class="card" onclick="openCourse('3-Kurs')">
-            <h3>3-Kurs</h3>
-            <p>Pat. anatomiya, Patofiziologiya, Farmakologiya</p>
-        </div>
     </div>
 
-    <!-- 2. FANLAR SAHifASI -->
+    <!-- FANLAR SAHIFASI -->
     <div id="view-subjects" class="hidden">
         <div class="back-btn" onclick="goBack('view-courses')">← Kurslarga qaytish</div>
         <h2 id="title-course" style="color: #38bdf8; text-align: center; margin-bottom: 15px;"></h2>
         <div id="list-subjects"></div>
     </div>
 
-    <!-- 3. ANATOMIYA MAVZULARI SAHIFASI -->
+    <!-- ANATOMIYA BO'LIMI -->
     <div id="view-anatomy" class="hidden">
         <div class="back-btn" onclick="goBack('view-subjects')">← Fanlarga qaytish</div>
         <h2 style="color: #38bdf8; text-align: center; margin-bottom: 15px;">Anatomiya Darsligi</h2>
         
-        <!-- I BO'LIM -->
         <div class="section-title">I BOʻLIM. OSTEOLOGIA (Suyaklar tizimi)</div>
         
         <div class="card" onclick="showTopic('SUYAK TOʻQIMASI VA UNING TUZILISHI', 
-'SUYAK TOʻQIMASI VA UNING TUZILISHI (OSTEOLOGIA)
-
-1. Umumiy tushunchalar va vazifalari:
-Osteologiya (yunoncha osteon — suyak, logos — fan) — odam skeleti, suyaklarning shakllanishi, mikroskopik va makroskopik tuzilishi, kimyoviy tarkibi hamda ularning biomekanik xususiyatlarini oʻrganuvchi fan tarmogʻidir. 
-Odam skeleti mexanik, biologik va himoya vazifalarini bajaradi:
-• Mexanik vazifasi: tayanch, harakat va shakl berish (tana qomatini saqlash);
-• Himoya vazifasi: muhim organlarni tashqi taʼsirlardan saqlash (kalla qutisi — miyani, koʻkrak qafasi — yurak va oʻpkani, chanoq — qorin boʻshligʻi va siydik-jinsiy organlarini);
-• Biologik vazifasi: qon yaratish (qizil koʻmik orqali) va mineral almashinuvida (kaltsiy, fosfor zaxirasi) qatnashish.
-
-2. Naysimon suyaklarning makroskopik tuzilishi:
-Naysimon suyaklar (uzun va kalta) odam tanasida harakatni taʼminlovchi asosiy richaglar hisoblanadi. Ular quyidagi qismlardan iborat:
-• Diafiz (Diaphysis) — suyakning oʻrta, naysimon qismi boʻlib, uning devori qattiq zich moddadan (substantia compacta) iborat. Ichida suyak koʻmigi boʻshligʻi (cavitas medullaris) joylashgan.
-• Epifiz (Epiphysis) — suyakning kengaygan ikki uchi boʻlib, ular boʻgʻim yuzalari bilan qoplangan va ichi gʻovak moddadan (substantia spongiosa) tuzilgan.
-• Metafiz (Metaphysis) — diafiz bilan epifiz orasidagi qism boʻlib, oʻsmirlik va oʻsish davrida bu yerda epifiz togʻayi (oʻsish zonasi) joylashadi. Suyakning boʻyiga oʻsishi shu hudud hisobiga boradi.
-• Apofiz (Apophysis) — suyakning oʻsimtalari boʻlib, ularga paylar va mushaklar birikadi (epifiz togʻayidan alohida suyaklanadi).
-
-3. Periost (Suyak usti pardasi) va uning ahamiyati:
-Periost (periosteum) — suyakni sirtqi tomonidan oʻrab turuvchi yupqa, zich biriktiruvchi toʻqima pardasi (boʻgʻim yuzalari bundan mustasno). U ikki qavatdan iborat:
-• Tashqi (tola) qavati — tomirlar va nervlarga boy boʻlib, suyakni oziqlantiradi;
-• Ichki (kembrial / osteogen) qavati — kambrial hujayralar (osteoblastlar)ni saqlaydi, bu esa suyakning eniga oʻsishi va sinishdan keyin qayta tiklanishi (regeneratsiya)ni taʼminlaydi.
-
-4. Suyakning kimyoviy tarkibi va fizik xossalari:
-Suyak toʻqimasi organik va anorganik moddalardan tarkib topgan:
-• Anorganik moddalar (65% gacha) — asosan kaltsiy fosfat, kaltsiy karbonat tuzlari boʻlib, suyakka qattiqlik va mustahkamlik beradi.
-• Organik moddalar (35% gacha) — asosan ossein oqsiliboʻlib, suyakka egiluvchanlik, elastiklik bagʻishlaydi. 
-Yosh bolalarda organik moddalar koʻp boʻlgani uchun suyaklari egiluvchan, qariyalarda esa anorganik tuzlar koʻpayib, suyaklar moʻrt va sinishga moyil boʻlib qoladi.')">
+'SUYAK TOʻQIMASI VA UNING TUZILISHI (OSTEOLOGIA)\n\n1. Umumiy tushunchalar va vazifalari:\nOsteologiya — odam skeleti, suyaklarning shakllanishi, mikroskopik va makroskopik tuzilishini oʻrganuvchi fan.\n• Mexanik vazifasi: tayanch va harakat.\n• Himoya vazifasi: muhim organlarni saqlash.\n• Biologik vazifasi: qon yaratish va mineral almashinuv.\n\n2. Naysimon suyaklarning tuzilishi:\n• Diafiz — oʻrta naysimon qismi, zich moddadan iborat.\n• Epifiz — kengaygan uchi, gʻovak moddadan iborat.\n• Metafiz — oʻsish zonasi.\n\n3. Periost (Suyak usti pardasi):\nSuyakni oziqlantiradi va eniga oʻsishini taʼminlaydi.')">
             <h3>Suyak toʻqimasi va tuzilishi</h3>
-            <p>Diafiz, epifiz, metafiz, periost, kimyoviy tarkib va funksiyalari</p>
+            <p>Diafiz, epifiz, metafiz va periost haqida</p>
         </div>
-
-        <div class="card" onclick="showTopic('SUYAKLARNING KLASSIFIKATSIYASI (TASNIFI)', 
-'SUYAKLARNING KLASSIFIKATSIYASI (TASNIFI)
-
-Odam skeletida 206 tadan ortiq suyak mavjud boʻlib, ular oʻzining shakli, tuzilishi, funksiyasi va ontogenetik rivojlanishiga koʻra quyidagi asosiy guruhlarga boʻlinadi:
-
-1. Naysimon suyaklar (Ossa longa et brevia):
-Silindrsimon yoki uch qirrali shaklga ega boʻlib, harakat va tayanch vazifasini bajaradi.
-• Uzun naysimon suyaklar: yelka (humerus), tirsak (ulna), bilak (radius), son (femur), katta va kichik boldir suyaklari.
-• Kalta naysimon suyaklar: kaft, barmoq falangalari.
-
-2. Gʻovak suyaklar (Ossa spongiosa):
-Asosan gʻovak moddadan iborat boʻlib, tashqi tomonidan yupqa zich modda qatlami bilan oʻralgan. Bularga kalta suyaklar kiradi: umurtqalar, toʻsh suyagi, bilak-kaft oldi (carpus) va oyoq panjasi tubi (tarsus) suyaklari.
-
-3. Yassi suyaklar (Ossa plana):
-Kengaygan yuzaga ega boʻlib, tanadagi boʻshliqlarni himoya qiladi va mushaklar birikishi uchun maydon hosil qiladi. Misollar: kalla qopqogʻi suyaklari (peshona, tepa), kurak (scapula), chanoq suyagi (os coxae).
-
-4. Aralash suyaklar (Ossa mixta):
-Turli shakl, tuzilish va kelib chiqishga ega boʻlgan qismlardan tarkib topgan. Misol uchun, umurtqalar (tanasi gʻovak, oʻsimtalari zich moddadan), kalla asosi suyaklari.
-
-5. Pnevmatik (havoli) suyaklar (Ossa pneumatica):
-Ichida shilliq qavat bilan qoplangan, havo saqlovchi boʻshligʻi bor suyaklar. Bu boʻshliqlar nafas yoʻllari bilan tutashgan. Misollar: peshona (os frontale), ponasimon (os sphenoidale), gʻalvirsimon (os ethmoidale) va yuqori jagʻ (maxilla). Bu boʻshliqlar kalla ogʻirligini kamaytiradi va ovozga rezonans beradi.')">
-            <h3>Suyaklar tasnifi</h3>
-            <p>Naysimon, gʻovak, yassi, aralash va havoli suyaklar turlari</p>
-        </div>
-
-        <div class="card" onclick="showTopic('VERTEBRA SACRALIS (DUMGʻAZA UMURTQALARI — OS SACRUM)', 
-'VERTEBRA SACRALIS (DUMGʻAZA UMURTQALARI — OS SACRUM)
-
-1. Umumiy tavsif va rivojlanishi:
-Oʻsmirlik davrida (18–25 yoshlarda) 5 ta alohida dumgʻaza umurtqalari oʻzaro birikib, yagona yirik uchburchak shakldagi dumgʻaza suyagini (os sacrum) hosil qiladi. U chanoq boʻshligʻining orqa devorini hosil qilishda qatnashadi va belni chanoq bilan bogʻlaydi.
-
-2. Suyakning asosiy qismlari:
-• Basis ossis sacri (Dumgʻaza asosi) — yuqoriga qaragan keng qismi boʻlib, beshinchi bel umurtqasi (L₅) bilan birikadi. Uning oldingi qismi turtib chiqqan boʻlib, promontorium (burun) deb ataladi. Shuningdek, uning ikki yonida yuqori boʻgʻim oʻsimtalari (processus articularis superior) joylashgan.
-• Apex ossis sacri (Dumgʻaza uchi) — pastga qaragan tor qismi boʻlib, dum suyagi (os coccygis) bilan birikadi.
-• Canalis sacralis (Dumgʻaza kanali) — umurtqa teshiklarining oʻzaro qoʻshilishidan hosil boʻladi. Bu kanal pastga tomon torayib borib, hiatus sacralis (dumgʻaza teshigi) bilan yakunlanadi. Kanalning ikki tomonida cornu sacralis (dumgʻaza shoxchalari) joylashadi.
-
-3. Yuzalari va qirralari:
-• Facies pelvina (Oldingi / chanoq yuzasi) — silliq, ichkariga egilgan. Unda 4 ta koʻndalang chiziq (linea transversa) va har ikki tomonda 4 tadan dumgʻaza chanoq teshiklari (foramina sacralia pelvina) mavjud boʻlib, ular orqali qon tomirlar va nervlar chiqadi.
-• Facies dorsalis (Orqa yuzasi) — qavariq, gʻadir-budir boʻlib, ustida 5 ta boʻylama qirralar (crista sacralis) hosil qiladi:
-  - Crista sacralis mediana (toq) — oʻsimtalarning qoʻshilishidan;
-  - Crista sacralis intermedia (juft) — boʻgʻim oʻsimtalari qoldigʻidan;
-  - Crista sacralis lateralis (juft) — koʻndalang oʻsimtalar qoldigʻidan.
-• Partes laterales (Yon qismlari) — quloqsimon sirt (facies auricularis) va dumgʻaza tuberozligi (tuberositas sacralis)ni oʻz ichiga oladi.')">
-            <h3>Vertebra sacralis (Dumgʻaza umurtqalari)</h3>
-            <p>Toʻliq darslik matni: Basis, apex, kanal, yuzalar va qirralar</p>
-        </div>
-
-        <div class="card" onclick="showTopic('BOSH SKELETI: MIYA QISMI (NEUROCRANIUM)', 
-'BOSH SKELETI (CRANIUM) — MIYA QISMI
-
-Kalla suyagi ikki katta boʻlimga boʻlinadi: miya qismi (neurocranium) va yuz qismi (viscerocranium). Miya qismi bosh miyani oʻrab turadi va 8 ta suyakdan iborat:
-
-1. Peshona suyagi (Os frontale) — toq suyak. Peshona qismi, koʻz kosa ustki qismi va peshona burun qismidan iborat. Ichida sinus frontalis (peshona havo boʻshligʻi) joylashgan.
-2. Tepa suyagi (Os parietale) — juft suyak boʻlib, kalla gumbazining yuqori-yon qismlarini hosil qiladi. Oʻzaro sagital chok orqali birikadi.
-3. Ensa suyagi (Os occipitale) — toq suyak. Kalla asosining orqa qismida yotadi. Unda yirik ensa teshigi (foramen magnum) mavjud boʻlib, u orqali bosh miya orqa miya bilan tutashadi. Ensa teshigi atrofida ensa burmalari va kondillari (condylus occipitalis) joylashgan.
-4. Chakka suyagi (Os temporale) — juft, murakkab tuzilgan suyak. Unda eshitish organlari joylashgan boʻlib, 3 qismga boʻlinadi: tanglay qismi, baraban qismi va tosh qismi (pyramis). Tosh qismida ichki quloq va yirik kanallar: canalis caroticus (uyqu arteriyasi kanali) va canalis facialis (yuz nervi kanali) oʻtadi.
-5. Ponasimon suyagi (Os sphenoidale) — toq, kalla asosining markazida yotuvchi murakkab suyak ("kapalak" shaklida). Uning tanasida turk egari (sella turcica) joylashgan boʻlib, unda gipofiz bezi yotadi.
-6. Gʻalvirsimon suyagi (Os ethmoidale) — toq suyak, burun boʻshligʻining yuqori qismini va koʻz kosa devorini hosil qiladi.')">
-            <h3>Bosh skeleti: Miya qismi (Neurocranium)</h3>
-            <p>Peshona, tepa, ensa, chakka kanallari va ponasimon suyak</p>
-        </div>
-
     </div>
 
-    <!-- Modal (Darslik oynasi) -->
+    <!-- MODAL OYNA -->
     <div id="modal" class="modal" onclick="closeOnBackground(event)">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
@@ -179,28 +85,7 @@ Kalla suyagi ikki katta boʻlimga boʻlinadi: miya qismi (neurocranium) va yuz q
                 document.getElementById('list-subjects').innerHTML = `
                     <div class="card" onclick="openAnatomiya()">
                         <h3>Anatomiya</h3>
-                        <p>Osteologiya mukammal darslik matnlari va boʻlimlari</p>
-                    </div>
-                    <div class="card" onclick="alert('Tez kunda qoʻshiladi!')">
-                        <h3>Histologiya</h3>
-                        <p>Hujayra va toʻqimalar haqida batafsil ma'lumot</p>
-                    </div>
-                    <div class="card" onclick="alert('Tez kunda qoʻshiladi!')">
-                        <h3>Tibbiy kimyo</h3>
-                        <p>Kimyoviy jarayonlar va eritmalar</p>
-                    </div>
-                    <div class="card" onclick="alert('Tez kunda qoʻshiladi!')">
-                        <h3>Lotin tili</h3>
-                        <p>Anatomiya terminologiyasi</p>
-                    </div>
-                `;
-            } else {
-                document.getElementById('view-subjects').classList.remove('hidden');
-                document.getElementById('title-course').innerText = courseName;
-                document.getElementById('list-subjects').innerHTML = `
-                    <div class="card" onclick="alert('Bu fan uchun konspektlar tez kunda qoʻshiladi!')">
-                        <h3>Ushbu kurs fanlari</h3>
-                        <p>Hozircha faqat 1-kurs Anatomiya boʻlimi toʻliq ishlayapti.</p>
+                        <p>Osteologiya va suyaklar tizimi</p>
                     </div>
                 `;
             }
