@@ -2,155 +2,85 @@
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
-    <title>Med Hub</title>
+    <title>Med Hub - Anatomiya</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background: #0f172a; color: #f8fafc; padding: 16px; margin: 0; padding-bottom: 80px; }
-        .header { text-align: center; margin-bottom: 24px; padding-top: 10px; }
-        .header h2 { color: #38bdf8; margin: 0 0 4px 0; font-size: 24px; font-weight: 800; letter-spacing: -0.5px; }
-        .bot-badge { display: inline-block; background: #1e293b; color: #fbbf24; font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 20px; border: 1px solid #334155; margin-bottom: 8px; }
-        .header p { color: #94a3b8; font-size: 14px; margin: 0; font-weight: 400; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f172a; color: #f8fafc; padding: 16px; margin: 0; padding-bottom: 50px; }
+        .header { text-align: center; margin-bottom: 20px; }
+        .header h2 { color: #38bdf8; margin: 0 0 5px 0; font-size: 22px; }
+        .bot-badge { color: #fbbf24; font-size: 12px; font-weight: bold; background: #1e293b; padding: 4px 10px; border-radius: 20px; border: 1px solid #334155; display: inline-block; }
         
-        .card { background: #1e293b; padding: 18px; border-radius: 16px; margin-bottom: 16px; border: 1px solid #334155; cursor: pointer; transition: all 0.2s ease; position: relative; overflow: hidden; }
-        .card:active { transform: scale(0.98); }
-        .card h3 { color: #f1f5f9; margin: 0 0 8px 0; font-size: 18px; font-weight: 700; }
-        .card p { color: #cbd5e1; font-size: 14px; margin: 0; line-height: 1.5; opacity: 0.9; }
+        .section-title { color: #fbbf24; font-size: 16px; margin: 20px 0 10px 0; border-bottom: 1px solid #334155; padding-bottom: 5px; font-weight: 700; }
+        .card { background: #1e293b; padding: 12px 16px; border-radius: 10px; margin-bottom: 8px; border: 1px solid #334155; cursor: pointer; transition: 0.2s; }
+        .card:hover { border-color: #38bdf8; background: #273548; }
+        .card h3 { margin: 0; color: #fff; font-size: 15px; font-weight: 500; }
         
-        .hidden { display: none !important; }
-        .back-btn { color: #38bdf8; margin-bottom: 20px; cursor: pointer; font-weight: 600; display: inline-flex; align-items: center; font-size: 15px; padding: 8px 0; }
-        .back-btn svg { width: 20px; height: 20px; margin-right: 6px; }
-        
-        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15, 23, 42, 0.9); display: flex; justify-content: center; align-items: center; z-index: 999999; padding: 20px; opacity: 0; visibility: hidden; transition: all 0.3s ease; backdrop-filter: blur(5px); }
-        .modal.open { opacity: 1; visibility: visible; }
-        .modal-content { background: #1e293b; width: 100%; max-width: 650px; max-height: 85vh; border-radius: 20px; border: 1px solid #475569; position: relative; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); display: flex; flex-direction: column; overflow: hidden; transform: scale(0.9); transition: transform 0.3s ease; }
-        .modal.open .modal-content { transform: scale(1); }
-        
-        .modal-header { padding: 16px 20px; border-bottom: 1px solid #334155; display: flex; align-items: center; justify-content: space-between; background: #273548; }
-        .modal-title { color: #fbbf24; font-size: 18px; font-weight: 700; margin: 0; }
-        .close-btn { background: none; border: none; color: #94a3b8; font-size: 28px; line-height: 1; cursor: pointer; padding: 4px; display: flex; align-items: center; justify-content: center; transition: color 0.2s; }
-        .close-btn:hover { color: #f87171; }
-        
-        .modal-body { padding: 20px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
-        .conspect-box { background: #0f172a; padding: 16px; border-radius: 12px; margin-bottom: 16px; border-left: 4px solid #fbbf24; font-size: 15px; line-height: 1.7; color: #e2e8f0; }
-        .conspect-box b { color: #f1f5f9; }
-        .meta-info { margin-top: 16px; padding-top: 16px; border-top: 1px solid #334155; }
-        .clinic { color: #f87171; font-size: 14px; margin-bottom: 8px; border-left: 3px solid #f87171; padding-left: 10px; padding-top: 4px; padding-bottom: 4px; background: rgba(248, 113, 113, 0.08); border-radius: 0 8px 8px 0; }
-        .usmle { color: #4ade80; font-size: 14px; border-left: 3px solid #4ade80; padding-left: 10px; padding-top: 4px; padding-bottom: 4px; background: rgba(74, 222, 128, 0.08); border-radius: 0 8px 8px 0; }
+        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15,23,42,0.95); display: none; padding: 20px; box-sizing: border-box; overflow-y: auto; z-index: 1000; }
+        .modal-content { background: #1e293b; padding: 20px; border-radius: 16px; border: 1px solid #38bdf8; max-width: 600px; margin: auto; position: relative; }
+        .close-btn { color: #f87171; float: right; font-size: 28px; cursor: pointer; font-weight: bold; line-height: 20px; }
+        .content-box { background: #0f172a; padding: 15px; border-radius: 10px; border-left: 4px solid #38bdf8; margin-top: 15px; line-height: 1.6; font-size: 14px; color: #e2e8f0; }
     </style>
 </head>
 <body>
 
-    <!-- Kurslar -->
-    <div id="view-courses">
-        <div class="header">
-            <span class="bot-badge">@MedHubApp_bot</span>
-            <h2>Med Hub</h2>
-            <p>Ta'lim platformasi va konspektlar bazasi</p>
-        </div>
-        <div class="card" onclick="openCourse('1-Kurs', ['Anatomiya', 'Histologiya', 'Tibbiy kimyo', 'Lotin tili'])">
-            <h3>1-Kurs</h3>
-            <p>Anatomiya, Histologiya, Kimyo, Lotin tili</p>
-        </div>
-        <div class="card" onclick="openCourse('2-Kurs', ['Biokimyo', 'Fiziologiya', 'Mikrobiologiya'])">
-            <h3>2-Kurs</h3>
-            <p>Biokimyo, Normal fiziologiya, Mikrobiologiya</p>
-        </div>
-        <div class="card" onclick="openCourse('3-Kurs', ['Patologik anatomiya', 'Patofiziologiya', 'Farmakologiya'])">
-            <h3>3-Kurs</h3>
-            <p>Pat. anatomiya, Patofiziologiya, Farmakologiya</p>
-        </div>
+<div class="header">
+    <span class="bot-badge">@MedHubOfficial_bot</span>
+    <h2>Anatomiya Konspektlari</h2>
+</div>
+
+<!-- I BO'LIM -->
+<div class="section-title">I BOʻLIM. OSTEOLOGIA (Suyaklar tizimi)</div>
+<div class="card" onclick="showTopic('Suyak toʻqimasi va tuzilishi', 'Naysimon va yassi suyaklarning mikroskopik hamda makroskopik tuzilishi, periost pardasi va suyaklanish jarayonlari.')"><h3>Suyak toʻqimasi va tuzilishi</h3></div>
+<div class="card" onclick="showTopic('Suyaklar tasnifi', 'Suyaklarning shakli, tuzilishi va vazifasiga koʻra turlarga boʻlinishi.')"><h3>Suyaklar tasnifi</h3></div>
+<div class="card" onclick="showTopic('Tana skeleti', 'Umurtqa pogʻonasi, koʻkrak qafasi, toʻsh va qovurgʻalarning anatomik tuzilishi.')"><h3>Tana skeleti</h3></div>
+<div class="card" onclick="showTopic('Qoʻl suyaklari', 'Kurak, oʻmrov, yelka, tirsak, bilak va qoʻl panjasi suyaklari.')"><h3>Qoʻl suyaklari</h3></div>
+<div class="card" onclick="showTopic('Oyoq suyaklari', 'Butun chanoq, chanoq oʻlchamlari, son, boldir va oyoq panjasi suyaklari.')"><h3>Oyoq suyaklari</h3></div>
+<div class="card" onclick="showTopic('Bosh skeleti (Kalla suyagi)', 'Peshona, tepa, ensa, gʻalvirsimon, ponasimon, chakka va uning kanallari.')"><h3>Bosh skeleti (Neyrokranium)</h3></div>
+<div class="card" onclick="showTopic('Yuz qismi suyaklari', 'Yuqori jagʻ, tanglay, koʻzyoshi, yanoq, burun, pastki jagʻ va til osti suyagi.')"><h3>Yuz qismi suyaklari</h3></div>
+<div class="card" onclick="showTopic('Kalla topografiyasi', 'Tashqi va ichki kalla asosi, koʻz kosasi, burun boʻshligʻi, chuqurchalar va liqildoqlar.')"><h3>Kalla topografiyasi</h3></div>
+
+<!-- II BO'LIM -->
+<div class="section-title">II BOʻLIM. ARTHROLOGIA (Boʻgʻimlar va birikishlar)</div>
+<div class="card" onclick="showTopic('Boʻgʻim komponentlari va birlashuvlar', 'Boʻgʻim elementlari, bosh suyaklari choklari, chakka-pastki jagʻ boʻgʻimi.')"><h3>Boʻgʻimlar va birikishlar asoslari</h3></div>
+<div class="card" onclick="showTopic('Umurtqa va koʻkrak qafasi birlashuvi', 'Umurtqalarning oʻzaro birikishi, kalla-umurtqa birlashmalari va koʻkrak qafasi suyaklari birikishi.')"><h3>Umurtqa va koʻkrak birlashuvi</h3></div>
+<div class="card" onclick="showTopic('Qoʻl va oyoq boʻgʻimlari', 'Qoʻl, oyoq suyaklari birlashuvi, Shopar va Lisfrank boʻgʻimlari.')"><h3>Qoʻl va oyoq boʻgʻimlari</h3></div>
+
+<!-- III BO'LIM -->
+<div class="section-title">III BOʻLIM. MIOLOGIA (Mushaklar tizimi)</div>
+<div class="card" onclick="showTopic('Mushak anatomiyasi va gistologiyasi', 'Mushaklarning umumiy tuzilishi, gistologik tuzilishi va yordamchi apparatlari.')"><h3>Mushaklar haqida umumiy tushuncha</h3></div>
+<div class="card" onclick="showTopic('Bosh va boʻyin mushaklari', 'Chaynash va mimika mushaklari, bosh fassiyalari, boʻyinning uchta qavati va fassiyalari, topografiyasi.')"><h3>Bosh va boʻyin mushaklari</h3></div>
+<div class="card" onclick="showTopic('Koʻkrak va qorin mushaklari', 'Koʻkrak mushaklari, diafragma, qorin devorining devorlari, chov kanali va fassiyalari.')"><h3>Koʻkrak va qorin mushaklari</h3></div>
+<div class="card" onclick="showTopic('Orqa mushaklari', 'Yuza, yuzaga yaqin va chuqur mushaklar hamda orqa fassiyalari.')"><h3>Orqa mushaklari</h3></div>
+<div class="card" onclick="showTopic('Qoʻl mushaklari', 'Yelka kamari, yelka, tirsak va bilak mushaklari guruhlari hamda panja mushaklari.')"><h3>Qoʻl mushaklari</h3></div>
+
+<!-- Modal -->
+<div id="modal" class="modal" onclick="closeOnBackground(event)">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <h2 id="modal-title" style="color:#fbbf24; margin-top:0; font-size:18px;"></h2>
+        <div id="modal-text" class="content-box"></div>
     </div>
+</div>
 
-    <!-- Fanlar -->
-    <div id="view-subjects" class="hidden">
-        <div class="back-btn" onclick="goBack('view-courses')">
-            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-            Kurslarga qaytish
-        </div>
-        <h2 id="title-subjects" style="color: #38bdf8; text-align: center; margin-bottom: 20px; font-size: 20px;"></h2>
-        <div id="list-subjects"></div>
-    </div>
-
-    <!-- Modal -->
-    <div id="modal-conspect" class="modal" onclick="handleClickOutside(event)">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 class="modal-title" id="modal-title"></h2>
-                <button class="close-btn" onclick="closeModal()">×</button>
-            </div>
-            <div class="modal-body" id="modal-body"></div>
-        </div>
-    </div>
-
-    <script>
-        if (window.Telegram && window.Telegram.WebApp) {
-            window.Telegram.WebApp.ready();
-            window.Telegram.WebApp.expand();
-            window.Telegram.WebApp.headerColor = '#0f172a'; 
-        }
-
-        function openCourse(courseName, subjects) {
-            document.getElementById('view-courses').classList.add('hidden');
-            document.getElementById('view-subjects').classList.remove('hidden');
-            document.getElementById('title-subjects').innerText = courseName;
-            
-            let list = document.getElementById('list-subjects');
-            list.innerHTML = '';
-            
-            subjects.forEach(sub => {
-                list.innerHTML += `
-                    <div class="card" onclick="openTopic('${sub}')">
-                        <h3>${sub}</h3>
-                        <p>Konspektni ochish →</p>
-                    </div>`;
-            });
-        }
-
-        function openTopic(subjectName) {
-            let modal = document.getElementById('modal-conspect');
-            document.getElementById('modal-title').innerText = subjectName + ' boʻyicha konspekt';
-            document.getElementById('modal-body').innerHTML = `
-                <div class="conspect-box">
-                    <b>Asosiy mavzu:</b> ${subjectName} fanining batafsil konspekti.<br><br>
-                    Bu yerda asosiy tushunchalar, mexanizmlar va ta'riflar jamlangan. O'qish va o'rganish uchun qulay format.
-                </div>
-                <div class="meta-info">
-                    <div class="clinic"><b>Klinik ahamiyati:</b> Amaliyotda qo'llaniladigan muhim tibbiy jihatlar va belgilar.</div>
-                    <div class="usmle"><b>USMLE eslatma:</b> Xalqaro imtihonlar uchun muhim bo'lgan kalit faktlar va savollar.</div>
-                </div>
-            `;
-            modal.classList.add('open');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            let modal = document.getElementById('modal-conspect');
-            modal.classList.remove('open');
-            document.body.style.overflow = '';
-        }
-
-        function handleClickOutside(event) {
-            if (event.target.id === 'modal-conspect') {
-                closeModal();
-            }
-        }
-
-        window.addEventListener('popstate', function(event) {
-            let modal = document.getElementById('modal-conspect');
-            if (modal.classList.contains('open')) {
-                closeModal();
-                history.pushState(null, null, window.location.href);
-            }
-        });
-        history.pushState(null, null, window.location.href);
-
-        function goBack(viewId) {
-            document.querySelectorAll('body > div').forEach(div => div.classList.add('hidden'));
-            document.getElementById(viewId).classList.remove('hidden');
-        }
-    </script>
+<script>
+    function showTopic(title, text) {
+        document.getElementById('modal-title').innerText = title;
+        document.getElementById('modal-text').innerText = text;
+        document.getElementById('modal').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+    function closeModal() {
+        document.getElementById('modal').style.display = 'none';
+        document.body.style.overflow = '';
+    }
+    function closeOnBackground(e) {
+        if (e.target.id === 'modal') closeModal();
+    }
+    if (window.Telegram && window.Telegram.WebApp) {
+        window.Telegram.WebApp.ready();
+        window.Telegram.WebApp.expand();
+    }
+</script>
 </body>
 </html>
