@@ -2,17 +2,18 @@
 <html lang="uz">
 <head>
     <meta charset="UTF-8">
-    <title>MedEcosystem - Anatomiya Bazasi</title>
+    <title>MedEcosystem - Anatomiya To'liq Mundarija</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         body { font-family: sans-serif; background: #121212; color: white; padding: 15px; margin: 0; }
         .card { background: #1e1e1e; padding: 15px; border-radius: 12px; margin-bottom: 12px; border: 1px solid #333; }
         .clickable { cursor: pointer; transition: 0.2s; }
         .clickable:hover { border-color: #40a9ff; background: #252525; }
-        h2 { text-align: center; color: #40a9ff; }
+        h2, h3 { text-align: center; color: #40a9ff; }
         .hidden { display: none; }
         .back-btn { color: #40a9ff; margin-bottom: 15px; cursor: pointer; font-weight: bold; display: inline-block; }
         p { color: #aaa; font-size: 14px; line-height: 1.4; margin: 6px 0; }
+        .section-title { color: #ffab00; margin-top: 15px; font-size: 16px; border-bottom: 1px solid #444; padding-bottom: 5px; }
         .clinic { color: #ff4d4f; font-size: 13px; margin-top: 8px; border-left: 2px solid #ff4d4f; padding-left: 8px; }
     </style>
 </head>
@@ -22,7 +23,7 @@
         <h2>MedEcosystem</h2>
         <div class="card clickable" onclick="showSubjects('1-kurs')">
             <h3>1-Kurs</h3>
-            <p>Anatomiya (To'liq chuqurlashtirilgan), Histologiya, Tibbiy kimyo</p>
+            <p>Anatomiya (Mundarija bo'yicha to'liq), Histologiya, Tibbiy kimyo</p>
         </div>
         <div class="card clickable" onclick="showSubjects('2-kurs')">
             <h3>2-Kurs</h3>
@@ -41,7 +42,7 @@
         <div id="list-subjects"></div>
     </div>
 
-    <!-- 3. Mavzular va Klinik ma'lumotlar -->
+    <!-- 3. Mavzular va Mundarija -->
     <div id="view-topics" class="hidden">
         <div class="back-btn" onclick="goBack('view-subjects')">← Fanlarga qaytish</div>
         <h2 id="title-topics"></h2>
@@ -52,77 +53,90 @@
         const data = {
             '1-kurs': {
                 'Anatomiya': [
+                    // I BO'LIM. OSTEOLOGIA
+                    { type: 'header', title: 'I BOʻLIM. OSTEOLOGIA (Suyaklar tizimi)' },
                     { 
-                        title: '1. Osteologiya: Suyaklar tizimi va turlari', 
-                        text: 'Skelet tuzilishi, suyakning kimyoviy tarkibi (organik va noorganik moddalar), uzun, kalta va yassi suyaklarning morfologiyasi.',
-                        clinic: 'Klinik ahamiyati: Osteoporoz, suyak sinishlari, raxit kasalligida suyak zichligining o\'zgarishi.'
+                        title: 'Suyak toʻqimasi va naysimon suyak tuzilishi', 
+                        text: 'Suyak toʻqimasining mikroskopik tuzilishi, periost pardasi va naysimon suyaklar epifiz, diafiz qismlari.',
+                        clinic: 'Klinik jihati: Periostit (suyak pardasi yalligʻlanishi) va suyak oʻsish nuqsonlari.'
                     },
                     { 
-                        title: '2. Kalla suyagining tuzilishi (Cranium)', 
-                        text: 'Miya va yuz kalla suyaklari, ularning birikish turlari (choklar), bosh suyagi asosining chuqurliklari.',
-                        clinic: 'Klinik ahamiyati: Bosh miya jarohatlarida suyak yoriqlari, kalla suyagi ichki bosimining oshishi.'
+                        title: 'Suyaklar tasnifi va tana skeleti', 
+                        text: 'Suyaklarning shakliga koʻra turlari (naysimon, yassi, kalta), umurtqa pogʻonasi va koʻkrak qafasi tuzilishi.',
+                        clinic: 'Klinik jihati: Skolioz, kifoz kabi umurtqa egriliklari va koʻkrak qafasi deformatsiyalari.'
                     },
                     { 
-                        title: '3. Miologiya: Muskullar tizimi va ish mexanizmi', 
-                        text: 'Skelet mushaklarining mikroskopik tuzilishi, paylar, fassiyalar va mushak guruhlarining sinergist/antagonist bo\'lib ishlashi.',
-                        clinic: 'Klinik ahamiyati: Miopatiyalar, mushak atrofiyalari va tetanus (qoqshol) paytida mushak spazmlari.'
+                        title: 'Qoʻl va oyoq suyaklari skeleti', 
+                        text: 'Kurak, oʻmrov, yelka, tirsak, bilak, qoʻl panjasi hamda butun chanoq, son, boldir va oyoq panjasi suyaklari.',
+                        clinic: 'Klinik jihati: Chanoq oʻlchamlari patologiyalari, tirsak va boldir suyaklari sinishlari.'
                     },
                     { 
-                        title: '4. Yurak-qon tomir tizimi anatomiyasi', 
-                        text: 'Yurak devori qatlamlari (epikard, miokard, endokard), o\'ng va chap kameralar, koronar tomirlar, katta va kichik qon aylanish doiralari.',
-                        clinic: 'Klinik ahamiyati: Miokard infarkti, yurak nuqsonlari va perikardit patologiyalari.'
+                        title: 'Bosh skeleti (Kalla suyaklari)', 
+                        text: 'Peshona, tepa, ensa, gʻalvirsimon, ponasimon, chakka suyaklari, chakka kanallari va yuz qism suyaklari (yuqori va pastki jagʻ).',
+                        clinic: 'Klinik jihati: Kalla suyagi yoriqlari, yuz suyaklari jarohatlari va liqildoqlar holati.'
+                    },
+
+                    // II BO'LIM. ARTHROLOGIA
+                    { type: 'header', title: 'II BOʻLIM. ARTHROLOGIA (Boʻgʻimlar va birikishlar)' },
+                    { 
+                        title: 'Boʻgʻim komponentlari va turlari', 
+                        text: 'Boʻgʻim yuzasi, xaltasi, boʻshligʻi, bosh suyaklarining birikish turlari va choklar.',
+                        clinic: 'Klinik jihati: Artrit, artroz va boʻgʻim chiqishlari (dislokatsiya).'
                     },
                     { 
-                        title: '5. Nafas olish tizimi va o\'pkalar', 
-                        text: 'Yuqori nafas yo\'llari, hiqildoq tog\'aylari, traxeya, bronx daraxti va o\'pkaning segmentar tuzilishi.',
-                        clinic: 'Klinik ahamiyati: Pnevmoniya, bronxial astma va o\'pka emfizemasida nafas yo\'llarining o\'zgarishi.'
+                        title: 'Umurtqalar va koʻkrak qafasining birikishi', 
+                        text: 'Umurtqalarning oʻzaro birikishi, chakka-pastki jagʻ boʻgʻimi, qoʻl va oyoq suyaklari birikishlari.',
+                        clinic: 'Klinik jihati: Jagʻ boʻgʻimi disfunksiyasi va umurtqalararo disk churrasi (gryja).'
+                    },
+
+                    // III BO'LIM. MYOLOGIA
+                    { type: 'header', title: 'III BOʻLIM. MYOLOGIA (Mushaklar tizimi)' },
+                    { 
+                        title: 'Mushak anatomiyasi va yordamchi apparatlari', 
+                        text: 'Mushak toʻqimasi, fassiyalar, qinlar, toʻsigʻlar va mexanik xususiyatlari.',
+                        clinic: 'Klinik jihati: Miogezoz va fassial boʻshliqlarda yiringli yalligʻlanishlar.'
                     },
                     { 
-                        title: '6. Ovqat hazm qilish trakti', 
-                        text: 'Oshqozon qismlari (tubi, tanasi, pilorik qism), ingichka va yo\'g\'on ichak tuzilishi, jigar va osti bezi topografiyasi.',
-                        clinic: 'Klinik ahamiyati: Yara kasalligi, appendisit, gepatit va xolecistit anatomik asoslari.'
+                        title: 'Bosh, boʻyin va koʻkrak mushaklari', 
+                        text: 'Chaynash va mimika mushaklari, boʻyin fassiyalari, koʻkrak mushaklari va diafragma.',
+                        clinic: 'Klinik jihati: Diafragma churralari va yuz mushaklari falaji (Bell falaji).'
                     },
                     { 
-                        title: '7. Siydik-tanosil tizimi', 
-                        text: 'Buyrakning tuzilishi (kosa-jom sistemasi, nefron topografiyasi), siydik naylari, qovuq.',
-                        clinic: 'Klinik ahamiyati: Glomerulonefrit, piyelonefrit va siydik-tosh kasalliklari.'
-                    },
-                    { 
-                        title: '8. Markaziy nerv sistemasi (Bosh va orqa miya)', 
-                        text: 'Katta yarimsharlar, miyacha, uzunchoq miya, orqa miyaning kulrang va oq moddasi tuzilishi.',
-                        clinic: 'Klinik ahamiyati: Insult (qon quyilishi yoki ishemiya), miya qon aylanishining o\'tkir buzilishlari.'
+                        title: 'Qorin, qoʻl va oyoq mushaklari', 
+                        text: 'Qorin devori, chov kanali, orqa mushaklari, yelka, bilak, son va boldir mushak-topografiyasi.',
+                        clinic: 'Klinik jihati: Chov churralari (grija) va mushak atrofiyalari.'
                     }
                 ],
                 'Histologiya': [
-                    { title: '1. Epiteliy va qon to\'qimasi', text: 'To\'qimalarning umumiy tasnifi va qon hujayralarining gistologik tuzilishi.', clinic: 'Klinik ahamiyati: Anemiya va leykoz tashxislari.' }
+                    { title: '1. Epiteliy va qon toʻqimasi', text: 'Toʻqimalarning umumiy tasnifi va qon hujayralarining gistologik tuzilishi.', clinic: 'Klinik jihati: Anemiya va leykoz tashxislari.' }
                 ],
                 'Tibbiy kimyo': [
-                    { title: '1. Eritmalar va pH muhit', text: 'Bufer sistemalar va osmotik bosim qonunchiligi.', clinic: 'Klinik ahamiyati: Kislota-asos muvozanatining buzilishi (asidoz, alkaloz).' }
+                    { title: '1. Eritmalar va pH muhit', text: 'Bufer sistemalar va osmotik bosim qonunchiligi.', clinic: 'Klinik jihati: Kislota-asos muvozanatining buzilishi.' }
                 ],
                 'Lotin tili': [
-                    { title: '1. Anatomik terminologiya', text: 'Lotincha atamalar, kelishiklar va retsept yozish asoslari.', clinic: 'Klinik ahamiyati: Tibbiy hujjatlar va retseptura.' }
+                    { title: '1. Anatomik terminologiya', text: 'Lotincha atamalar, kelishiklar va retsept yozish asoslari.', clinic: 'Klinik jihati: Tibbiy hujjatlar va retseptura.' }
                 ]
             },
             '2-kurs': {
                 'Biokimyo': [
-                    { title: '1. Oqsil va uglevod almashinuvi', text: 'Glikoliz va mochevina hosil bo\'lish sikli.', clinic: 'Klinik ahamiyati: Qandli diabet patobioximiyasi.' }
+                    { title: '1. Oqsil va uglevod almashinuvi', text: 'Glikoliz va mochevina hosil boʻlish sikli.', clinic: 'Klinik jihati: Qandli diabet patobioximiyasi.' }
                 ],
                 'Normal fiziologiya': [
-                    { title: '1. Qon fiziologiyasi va gemostaz', text: 'Qon ivish sistemasi va gomeostaz.', clinic: 'Klinik ahamiyati: Trombofiliya va qon oqish kasalliklari.' }
+                    { title: '1. Qon fiziologiyasi va gemostaz', text: 'Qon ivish sistemasi va gomeostaz.', clinic: 'Klinik jihati: Trombofiliya va qon oqish kasalliklari.' }
                 ],
                 'Mikrobiologiya': [
-                    { title: '1. Bakteriyalar va viruslar', text: 'Morfologiya va bo\'yalish usullari.', clinic: 'Klinik ahamiyati: Antibiotiklarga rezistentlik.' }
+                    { title: '1. Bakteriyalar va viruslar', text: 'Morfologiya va boʻyalish usullari.', clinic: 'Klinik jihati: Antibiotiklarga rezistentlik.' }
                 ]
             },
             '3-kurs': {
                 'Patologik anatomiya': [
-                    { title: '1. Huayra shikastlanishi va nekroz', text: 'Morfologik o\'zgarishlar.', clinic: 'Klinik ahamiyati: Infarkt va gangrena.' }
+                    { title: '1. Hujayra shikastlanishi va nekroz', text: 'Morfologik oʻzgarishlar.', clinic: 'Klinik jihati: Infarkt va gangrena.' }
                 ],
                 'Patofiziologiya': [
-                    { title: '1. Tipik patologik jarayonlar', text: 'Isitma va gipoksiya.', clinic: 'Klinik ahamiyati: Shok holatlari.' }
+                    { title: '1. Tipik patologik jarayonlar', text: 'Isitma va gipoksiya.', clinic: 'Klinik jihati: Shok holatlari.' }
                 ],
                 'Farmakologiya': [
-                    { title: '1. Umumiy farmakokinetika', text: 'Dorilarning organizmga ta\'siri.', clinic: 'Klinik ahamiyati: Dori vositalarining nojo\'ya ta\'sirlari.' }
+                    { title: '1. Umumiy farmakokinetika', text: 'Dorilarning organizmga taʼsiri.', clinic: 'Klinik jihati: Dori vositalarining nojoʻya taʼsirlari.' }
                 ]
             }
         };
@@ -135,7 +149,7 @@
             let list = document.getElementById('list-subjects');
             list.innerHTML = '';
             for (let sub in data[course]) {
-                list.innerHTML += `<div class="card clickable" onclick="showTopics('${course}', '${sub}')"><h3>${sub}</h3><p>Mavzular va klinika tahlilini ko'rish →</p></div>`;
+                list.innerHTML += `<div class="card clickable" onclick="showTopics('${course}', '${sub}')"><h3>${sub}</h3><p>Muvofiq bo'limlarni ko'rish →</p></div>`;
             }
         }
 
@@ -147,12 +161,16 @@
             let list = document.getElementById('list-topics');
             list.innerHTML = '';
             data[course][subject].forEach(topic => {
-                list.innerHTML += `
-                    <div class="card">
-                        <h3 style="color:#40a9ff">${topic.title}</h3>
-                        <p>${topic.text}</p>
-                        <div class="clinic"><b>Klinik jihati:</b> ${topic.clinic}</div>
-                    </div>`;
+                if(topic.type === 'header') {
+                    list.innerHTML += `<div class="section-title"><b>${topic.title}</b></div>`;
+                } else {
+                    list.innerHTML += `
+                        <div class="card">
+                            <h3 style="color:#40a9ff; text-align: left; font-size: 16px;">${topic.title}</h3>
+                            <p>${topic.text}</p>
+                            <div class="clinic"><b>Klinik jihati:</b> ${topic.clinic}</div>
+                        </div>`;
+                }
             });
         }
 
