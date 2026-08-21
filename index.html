@@ -20,10 +20,12 @@
         .hidden { display: none !important; }
         .back-btn { color: #38bdf8; margin-bottom: 15px; cursor: pointer; font-weight: 600; display: inline-flex; align-items: center; font-size: 14px; }
         
-        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15,23,42,0.95); display: none; padding: 20px; box-sizing: border-box; overflow-y: auto; z-index: 1000; }
-        .modal-content { background: #1e293b; padding: 20px; border-radius: 16px; border: 1px solid #38bdf8; max-width: 600px; margin: auto; position: relative; }
+        .modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(15,23,42,0.96); display: none; padding: 15px; box-sizing: border-box; overflow-y: auto; z-index: 1000; }
+        .modal-content { background: #1e293b; padding: 20px; border-radius: 16px; border: 1px solid #38bdf8; max-width: 650px; margin: auto; position: relative; }
         .close-btn { color: #f87171; float: right; font-size: 28px; cursor: pointer; font-weight: bold; line-height: 20px; }
-        .content-box { background: #0f172a; padding: 15px; border-radius: 10px; border-left: 4px solid #38bdf8; margin-top: 15px; line-height: 1.6; font-size: 14px; color: #e2e8f0; }
+        
+        /* Konspekt uslubi (Daftar ko'rinishi) */
+        .note-box { background: #0f172a; padding: 15px; border-radius: 10px; border-left: 4px solid #38bdf8; margin-top: 15px; line-height: 1.7; font-size: 14px; color: #e2e8f0; font-family: monospace; white-space: pre-line; }
     </style>
 </head>
 <body>
@@ -63,36 +65,89 @@
         
         <!-- I BO'LIM -->
         <div class="section-title">I BOʻLIM. OSTEOLOGIA (Suyaklar tizimi)</div>
-        <div class="card" onclick="showTopic('Suyak toʻqimasi va tuzilishi', 'Naysimon va yassi suyaklarning mikroskopik hamda makroskopik tuzilishi, periost pardasi va suyaklanish jarayonlari.')"><h3>Suyak toʻqimasi va tuzilishi</h3></div>
-        <div class="card" onclick="showTopic('Suyaklar tasnifi', 'Suyaklarning shakli, tuzilishi va vazifasiga koʻra turlarga boʻlinishi.')"><h3>Suyaklar tasnifi</h3></div>
-        <div class="card" onclick="showTopic('Tana skeleti', 'Umurtqa pogʻonasi, koʻkrak qafasi, toʻsh va qovurgʻalarning anatomik tuzilishi.')"><h3>Tana skeleti</h3></div>
-        <div class="card" onclick="showTopic('Qoʻl suyaklari', 'Kurak, oʻmrov, yelka, tirsak, bilak va qoʻl panjasi suyaklari.')"><h3>Qoʻl suyaklari</h3></div>
-        <div class="card" onclick="showTopic('Oyoq suyaklari', 'Butun chanoq, chanoq oʻlchamlari, son, boldir va oyoq panjasi suyaklari.')"><h3>Oyoq suyaklari</h3></div>
-        <div class="card" onclick="showTopic('Bosh skeleti (Kalla suyagi)', 'Peshona, tepa, ensa, gʻalvirsimon, ponasimon, chakka va uning kanallari.')"><h3>Bosh skeleti (Neyrokranium)</h3></div>
-        <div class="card" onclick="showTopic('Yuz qismi suyaklari', 'Yuqori jagʻ, tanglay, koʻzyoshi, yanoq, burun, pastki jagʻ va til osti suyagi.')"><h3>Yuz qismi suyaklari</h3></div>
-        <div class="card" onclick="showTopic('Kalla topografiyasi', 'Tashqi va ichki kalla asosi, koʻz kosasi, burun boʻshligʻi, chuqurchalar va liqildoqlar.')"><h3>Kalla topografiyasi</h3></div>
+        <div class="card" onclick="showTopic('VERTEBRA SACRALIS (DUMGʻAZA UMURTQALARI)', 'S₁–S₅\n\n✓ Oʻsmirlikda oʻzaro birikib, os sacrum hosil boʻladi.\n✓ Qismlari:\n   - basis ossis sacri\n   - apex ossis sacri\n   - facies anterior, pelvina\n   - facies posterior, dorsalis\n   - partes laterales\n\n✓ basis ossis sacri\n   - promontorium – L₅ bilan birikgan qismida\n   - processus articularis superior – yuqorida (S₁)\n\n✓ apex ossis sacri\n   - foramen vertebrale oʻzaro qoʻshilib – canalis sacralis\n   - kanal pastga tomon torayib – hiatus sacralis da tugaydi.\n   - ikki tomonida – cornu sacralis hosil qiladi.\n\n✓ pars lateralis\n   - ala sacralis\n   - facies auricularis\n   - tuberositas sacralis\n\n✓ facies pelvina\n   - linea transversa\n   - foramina sacralia pelvina\n\n✓ facies dorsalis\n   - 5 ta crista sacralis hosil boʻladi:\n     • media – proc. spinosusdan (toq)\n     • intermedia – proc. articularisdan (juft)\n     • lateralis – proc. transversusdan (juft)\n   - foramina sacralia dorsalia')">
+            <h3>Vertebra sacralis (Dumgʻaza umurtqalari)</h3>
+            <p>S₁–S₅, qismlari, yuzalari va teshiklari (Konspekt shaklida)</p>
+        </div>
+        
+        <div class="card" onclick="showTopic('Suyak toʻqimasi va tuzilishi', '✓ Naysimon suyak tuzilishi\n✓ Yassi suyak tuzilishi\n✓ Suyaklanish jarayonlari\n✓ Periost (suyak usti pardasi) tuzilishi va vazifalari\n✓ Suyaklarning fizik xossalari va kimyoviy tarkibi')">
+            <h3>Suyak toʻqimasi va tuzilishi</h3>
+            <p>Naysimon, yassi suyaklar va periost tuzilishi</p>
+        </div>
+        <div class="card" onclick="showTopic('Suyaklar tasnifi', '✓ Shakliga koʻra:\n   - Naysimon (uzun va kalta)\n   - Gʻovak (kalta)\n   - Yassi\n   - Aralash\n   - Pnevmatik (havoli) suyaklar')">
+            <h3>Suyaklar tasnifi</h3>
+            <p>Suyaklarning shakli va tuzilishiga koʻra turlari</p>
+        </div>
+        <div class="card" onclick="showTopic('Tana skeleti', '✓ Umurtqa pogʻonasi (Columna vertebralis)\n✓ Koʻkrak qafasi (Cavea thoracis)\n✓ Toʻsh (Sternum)\n✓ Qovurgʻalar (Costae) – haqiqiy, soxta va tebranuvchi qovurgʻalar')">
+            <h3>Tana skeleti</h3>
+            <p>Umurtqa pogʻonasi, koʻkrak qafasi va qovurgʻalar</p>
+        </div>
+        <div class="card" onclick="showTopic('Qoʻl suyaklari', '✓ Kurak (Scapula) va oʻmrov (Clavicula)\n✓ Yelka suyagi (Humerus)\n✓ Tirsak va bilak suyaklari (Ulna, Radius)\n✓ Qoʻl panjasi suyaklari (Carpus, Metacarpus, Phalanges)')">
+            <h3>Qoʻl suyaklari</h3>
+            <p>Yelka kamari, qoʻl va panja suyaklari</p>
+        </div>
+        <div class="card" onclick="showTopic('Oyoq suyaklari', '✓ Chanoq suyagi (Os coxae)\n✓ Chanoq oʻlchamlari va tuzilishi\n✓ Son suyagi (Femur) va tizza qopqogʻi (Patella)\n✓ Boldir suyaklari (Tibia, Fibula)\n✓ Oyoq panjasi suyaklari (Tarsus, Metatarsus, Phalanges)')">
+            <h3>Oyoq suyaklari</h3>
+            <p>Chanoq, son, boldir va oyoq panjasi</p>
+        </div>
+        <div class="card" onclick="showTopic('Bosh skeleti (Kalla suyagi)', '✓ Neyrokranium (Miya qismi):\n   - Peshona (Os frontale)\n   - Tepa (Os parietale)\n   - Ensa (Os occipitale)\n   - Gʻalvirsimon (Os ethmoidale)\n   - Ponasimon (Os sphenoidale)\n   - Chakka (Os temporale) va uning kanallari')">
+            <h3>Bosh skeleti (Kalla suyagi)</h3>
+            <p>Miya qismi suyaklari va chakka kanallari</p>
+        </div>
+        <div class="card" onclick="showTopic('Yuz qismi suyaklari', '✓ Vissserokranium (Yuz qismi):\n   - Yuqori jagʻ (Maxilla)\n   - Tanglay va koʻzyoshi suyaklari\n   - Yanoq va burun suyaklari\n   - Pastki jagʻ (Mandibula)\n   - Til osti suyagi (Os hyoideum)')">
+            <h3>Yuz qismi suyaklari</h3>
+            <p>Yuqori va pastki jagʻ, yuz suyaklari</p>
+        </div>
+        <div class="card" onclick="showTopic('Kalla topografiyasi', '✓ Tashqi va ichki kalla asosi\n✓ Koʻz kosasi (Orbita) devorlari\n✓ Burun boʻshligʻi\n✓ Chakka va chakka osti chuqurchalari\n✓ Qanot-tanglay chuqurchasi va liqildoqlar')">
+            <h3>Kalla topografiyasi</h3>
+            <p>Chuqurchalar, kanallar va liqildoqlar</p>
+        </div>
 
         <!-- II BO'LIM -->
         <div class="section-title">II BOʻLIM. ARTHROLOGIA (Boʻgʻimlar va birikishlar)</div>
-        <div class="card" onclick="showTopic('Boʻgʻim komponentlari va birlashuvlar', 'Boʻgʻim elementlari, bosh suyaklari choklari, chakka-pastki jagʻ boʻgʻimi.')"><h3>Boʻgʻimlar va birikishlar asoslari</h3></div>
-        <div class="card" onclick="showTopic('Umurtqa va koʻkrak qafasi birlashuvi', 'Umurtqalarning oʻzaro birikishi, kalla-umurtqa birlashmalari va koʻkrak qafasi suyaklari birikishi.')"><h3>Umurtqa va koʻkrak birlashuvi</h3></div>
-        <div class="card" onclick="showTopic('Qoʻl va oyoq boʻgʻimlari', 'Qoʻl, oyoq suyaklari birlashuvi, Shopar va Lisfrank boʻgʻimlari.')"><h3>Qoʻl va oyoq boʻgʻimlari</h3></div>
+        <div class="card" onclick="showTopic('Boʻgʻim komponentlari va birlashuvlar', '✓ Boʻgʻimning asosiy elementlari (sirt, xalta, boʻshliq)\n✓ Uzluksiz va uzlukli birikishlar\n✓ Bosh suyaklari choklarining turlari\n✓ Chakka-pastki jagʻ boʻgʻimi')">
+            <h3>Boʻgʻimlar va birikishlar asoslari</h3>
+            <p>Boʻgʻim elementlari va choklar</p>
+        </div>
+        <div class="card" onclick="showTopic('Umurtqa va koʻkrak qafasi birlashuvi', '✓ Umurtqalarning oʻzaro birikish turlari\n✓ Kalla va umurtqa pogʻonasi birlashuvi\n✓ Koʻkrak qafasi suyaklarining birikishlari va boʻgʻimlari')">
+            <h3>Umurtqa va koʻkrak birlashuvi</h3>
+            <p>Umurtqalararo disklar va boʻgʻimlar</p>
+        </div>
+        <div class="card" onclick="showTopic('Qoʻl va oyoq boʻgʻimlari', '✓ Yelka, tirsak va bilak-panja boʻgʻimlari\n✓ Chanoq boʻgʻimlari, tizza va toʻpiq boʻgʻimlari\n✓ Shopar va Lisfrank boʻgʻimlari')">
+            <h3>Qoʻl va oyoq boʻgʻimlari</h3>
+            <p>Oyoq-qoʻl boʻgʻimlari, Shopar va Lisfrank</p>
+        </div>
 
         <!-- III BO'LIM -->
         <div class="section-title">III BOʻLIM. MIOLOGIA (Mushaklar tizimi)</div>
-        <div class="card" onclick="showTopic('Mushak anatomiyasi va gistologiyasi', 'Mushaklarning umumiy tuzilishi, gistologik tuzilishi va yordamchi apparatlari.')"><h3>Mushaklar haqida umumiy tushuncha</h3></div>
-        <div class="card" onclick="showTopic('Bosh va boʻyin mushaklari', 'Chaynash va mimika mushaklari, bosh fassiyalari, boʻyinning uchta qavati va fassiyalari, topografiyasi.')"><h3>Bosh va boʻyin mushaklari</h3></div>
-        <div class="card" onclick="showTopic('Koʻkrak va qorin mushaklari', 'Koʻkrak mushaklari, diafragma, qorin devorining devorlari, chov kanali va fassiyalari.')"><h3>Koʻkrak va qorin mushaklari</h3></div>
-        <div class="card" onclick="showTopic('Orqa mushaklari', 'Yuza, yuzaga yaqin va chuqur mushaklar hamda orqa fassiyalari.')"><h3>Orqa mushaklari</h3></div>
-        <div class="card" onclick="showTopic('Qoʻl mushaklari', 'Yelka kamari, yelka, tirsak va bilak mushaklari guruhlari hamda panja mushaklari.')"><h3>Qoʻl mushaklari</h3></div>
+        <div class="card" onclick="showTopic('Mushak anatomiyasi va gistologiyasi', '✓ Skelet mushagining makro va mikroskopik tuzilishi\n✓ Mushak gistologiyasi va qisqarish birligi\n✓ Mushakning yordamchi apparatlari (fassiyalar, bloklar, sinovial xaltalar)')">
+            <h3>Mushaklar haqida umumiy tushuncha</h3>
+            <p>Anatomiya, gistologiya va yordamchi apparatlar</p>
+        </div>
+        <div class="card" onclick="showTopic('Bosh va boʻyin mushaklari', '✓ Chaynash mushaklari guruhi\n✓ Mimika mushaklari va bosh fassiyalari\n✓ Boʻyin mushaklari: yuza, oʻrta va chuqur qavat\n✓ Boʻyin fassiyalari va topografiyasi')">
+            <h3>Bosh va boʻyin mushaklari</h3>
+            <p>Chaynash, mimika va boʻyin mushaklari</p>
+        </div>
+        <div class="card" onclick="showTopic('Koʻkrak va qorin mushaklari', '✓ Koʻkrakning qoʻlga birikkan va xususiy mushaklari\n✓ Diafragma va uning teshiklari\n✓ Qorin devorining old, yon va orqa devor mushaklari\n✓ Chov kanali devorlari va fassiyalari')">
+            <h3>Koʻkrak va qorin mushaklari</h3>
+            <p>Diafragma, qorin devori va chov kanali</p>
+        </div>
+        <div class="card" onclick="showTopic('Orqa mushaklari', '✓ Yuza mushaklar (trapeziya, keng yelka va boshqalar)\n✓ Yuzaga yaqin mushaklar\n✓ Chuqur mushaklar (longissimus, iliocostalis va boshqalar)\n✓ Orqa fassiyalari')">
+            <h3>Orqa mushaklari</h3>
+            <p>Yuza, yuzaga yaqin va chuqur mushaklar</p>
+        </div>
+        <div class="card" onclick="showTopic('Qoʻl mushaklari', '✓ Yelka kamari mushaklari\n✓ Yelka mushaklari (old va orqa guruh, fassiyalari)\n✓ Tirsak va bilak mushaklari (old palmar va orqa guruh)\n✓ Qoʻl panjasi mushaklari')">
+            <h3>Qoʻl mushaklari</h3>
+            <p>Yelka, tirsak, bilak va panja mushaklari</p>
+        </div>
     </div>
 
-    <!-- Modal (Ma'lumot oynasi) -->
+    <!-- Modal (Daftar ko'rinishidagi ma'lumot oynasi) -->
     <div id="modal" class="modal" onclick="closeOnBackground(event)">
         <div class="modal-content">
             <span class="close-btn" onclick="closeModal()">&times;</span>
-            <h2 id="modal-title" style="color:#fbbf24; margin-top:0; font-size:18px;"></h2>
-            <div id="modal-text" class="content-box"></div>
+            <h2 id="modal-title" style="color:#fbbf24; margin-top:0; font-size:17px; border-bottom: 1px solid #334155; padding-bottom: 8px;"></h2>
+            <div id="modal-text" class="note-box"></div>
         </div>
     </div>
 
